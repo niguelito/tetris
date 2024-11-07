@@ -5,13 +5,11 @@
 
 html,
 body {
-    background-color: rgb(43, 43, 43);
+    background-color: #222;
     margin: 0;
     padding: 0;
     color: #fff;
     position: relative;
-    display: flex;
-    justify-content: center;
 }
 
 html,
@@ -20,6 +18,7 @@ html main,
 body,
 body canvas,
 body main {
+    width: calc(100vh * 0.5556);
     overflow: hidden;
 }
 
@@ -42,12 +41,9 @@ body main {
 main {
     position: relative;
     margin: 3px;
-    width: calc(100vh * 0.56);
-    height: 100vh;
-    background-color: black;
 }
 
-main button {
+main>button {
     position: absolute;
     top: 45px;
     margin: 0;
@@ -67,7 +63,7 @@ main button {
     align-items: center;
 }
 
-main button img {
+main>button img {
     position: relative;
     width: 30px;
     height: 30px;
@@ -77,24 +73,8 @@ main>button#restart {
     left: 45px;
 }
 
-main>button#controls {
-    left: 90px;
-}
-
 main>button#pause {
     right: 45px;
-    transform: translate(50%, -50%);
-}
-
-main>button#back {
-    right: 50%;
-    transform: translate(50%, -50%);
-    font-size: 50px;
-    color: white;
-}
-
-main>button#settings {
-    right: 90px;
     transform: translate(50%, -50%);
 }
 
@@ -113,7 +93,7 @@ main div.controls {
     justify-content: center;
     color: #ccc;
     position: absolute;
-    top: 4rem;
+    top: 7rem;
     left: 0;
     font-size: 1rem;
     width: 100%;
