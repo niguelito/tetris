@@ -1,3 +1,4 @@
+import { Difficulty } from '../Settings';
 import { Shape, ShapeWeights } from '../Shape';
 import { Color } from '../renderer/Color';
 
@@ -12,4 +13,6 @@ export class Line4 extends Shape {
   weight = ShapeWeights.COMMON;
 
   color = Color.hex(0x0DFF72);
+
+  minDiff: number = Difficulty.EASY;
 }

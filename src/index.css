@@ -32,7 +32,6 @@ body main {
 
 * {
     box-sizing: border-box;
-    user-select: none;
 }
 
 *[hidden] {
@@ -71,6 +70,7 @@ main button img {
     position: relative;
     width: 30px;
     height: 30px;
+    user-select: none;
 }
 
 main>button#restart {

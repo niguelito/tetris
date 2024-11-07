@@ -1,3 +1,4 @@
+import { Difficulty } from '../Settings';
 import { Shape, ShapeWeights } from '../Shape';
 import { Color } from '../renderer/Color';
 
@@ -10,4 +11,6 @@ export class Rect12 extends Shape {
   weight = ShapeWeights.VERY_COMMON;
 
   color = Color.hex(0x701170);
+
+  minDiff: number = Difficulty.EASY;
 }

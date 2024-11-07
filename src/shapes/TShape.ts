@@ -1,3 +1,4 @@
+import { Difficulty } from '../Settings';
 import { Shape, ShapeWeights } from '../Shape';
 import { Color } from '../renderer/Color';
 
@@ -11,4 +12,6 @@ export class TShape extends Shape {
   weight = ShapeWeights.UNCOMMON;
 
   color = Color.hex(0xB603FC);
+
+  minDiff: number = Difficulty.NORMAL;
 }

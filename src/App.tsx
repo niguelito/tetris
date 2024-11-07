@@ -27,6 +27,9 @@ import { Game } from './Game';
 import { State } from './State';
 import { ShapeRotation } from './renderer/ShapeRenderer';
 import { useState } from 'react';
+import { MiguelShape } from './shapes/MiguelShape';
+import { MartinShape } from './shapes/MartinShape';
+import { GameStorage } from './Storage';
 
 export enum Screens {
     GAME,
@@ -35,7 +38,9 @@ export enum Screens {
 }
 
 function App() {
-    State.init();
+    var state = GameStorage.load();
+
+    State.init(state);
     console.log(State.arenaState);
 
     ShapeRegistry.register(new Cube1());
@@ -57,6 +62,8 @@ function App() {
     ShapeRegistry.register(new TShape());
     ShapeRegistry.register(new TwinTowers());
     ShapeRegistry.register(new TwinTowersThick());
+    ShapeRegistry.register(new MiguelShape());
+    ShapeRegistry.register(new MartinShape());
 
     State.putShape(new SmallT(), 4, 21, ShapeRotation.CW_180);
     State.putShape(new TwinTowers(), 2, 10, ShapeRotation.CW_90);

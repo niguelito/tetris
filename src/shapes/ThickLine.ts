@@ -1,3 +1,4 @@
+import { Difficulty } from '../Settings';
 import { Shape, ShapeWeights } from '../Shape';
 import { Color } from '../renderer/Color';
 
@@ -12,4 +13,6 @@ export class ThickLine extends Shape {
   weight = ShapeWeights.RARE;
 
   color = Color.hex(0xe66787);
+
+  minDiff: number = Difficulty.MEDIUM;
 }

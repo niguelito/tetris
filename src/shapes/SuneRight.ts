@@ -1,3 +1,4 @@
+import { Difficulty } from '../Settings';
 import { Shape, ShapeWeights } from '../Shape';
 import { Color } from '../renderer/Color';
 
@@ -10,4 +11,6 @@ export class SuneRight extends Shape {
   weight = ShapeWeights.COMMON;
 
   color = Color.hex(0xFFE138);
+
+  minDiff: number = Difficulty.EASY;
 }

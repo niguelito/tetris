@@ -1,3 +1,4 @@
+import { Difficulty } from '../Settings';
 import { Shape, ShapeWeights } from '../Shape';
 import { Color } from '../renderer/Color';
 
@@ -11,4 +12,6 @@ export class Rect32 extends Shape {
   weight = ShapeWeights.RARE;
 
   color = Color.hex(0xe69c67);
+
+  minDiff: number = Difficulty.NORMAL;
 }

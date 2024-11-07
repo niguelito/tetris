@@ -9,6 +9,8 @@ export abstract class Shape {
 
     abstract color: Color;
 
+    abstract minDiff: number;
+
     public rotateCW90(): ShapeDefinition {
         const n = this.shape.length;
         const m = this.shape[0].length;
@@ -46,11 +48,10 @@ export abstract class Shape {
 }
 
 export class ShapeWeights {
-    public static SUPER_RARE = 1;
-    public static RARE = 5;
-    public static UNCOMMON = 8;
-    public static COMMON = 10;
-    public static VERY_COMMON = 15;
+    public static RARE = 1;
+    public static UNCOMMON = 5;
+    public static COMMON = 8;
+    public static VERY_COMMON = 12;
 }
 
 export class ShapeRegistry {
