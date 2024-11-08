@@ -1,14 +1,15 @@
+import { Settings } from "./Settings";
 import { GameRenderer } from "./renderer/GameRenderer";
 import { GuiGraphics } from "./renderer/GuiGraphics";
 
 export class Game {
-    public static arenaWidth = 15;
-    public static arenaHeight = 27;
-    public static deathHeight = 24;
+    public static get arenaWidth() { return Settings.weightedDifficulty(10, 10, 15, 15, 15) };
+    public static get arenaHeight() { return Settings.weightedDifficulty(18, 18, 27, 27, 27) };
+    public static get deathHeight() { return Settings.weightedDifficulty(15, 15, 24, 24, 24) };
     public static screenWidth = 675;
     public static screenHeight = 1215;
 
-    public static scale = this.screenHeight / this.arenaHeight;
+    public static get scale() { return this.screenHeight / this.arenaHeight };
     public static dropInterval = 350;
     public static dropKeyInterval = 44;
     public static lockDelay = 450;

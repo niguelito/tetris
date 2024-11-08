@@ -4,18 +4,18 @@ import { State } from "../State";
 import { Color } from "./Color";
 import { Game } from "../Game";
 
-export enum ShapeRotation {
-    NORMAL,
-    CW_90,
-    CW_180,
-    CCW_90
+export class ShapeRotation {
+    public static NORMAL = 0;
+    public static CW_90 = 1;
+    public static CW_180 = 2;
+    public static CCW_90 = 3;
 }
 
 export class ShapeRenderer {
     public static renderShape(graphics: GuiGraphics, shape: Shape, x: number, y: number, rotation = ShapeRotation.NORMAL) {
         var shapeDefinition;
         switch (rotation) {
-            case ShapeRotation.NORMAL: shapeDefinition = shape.shape; break;
+            default: shapeDefinition = shape.shape; break;
             case ShapeRotation.CW_90: shapeDefinition = shape.rotateCW90(); break;
             case ShapeRotation.CW_180: shapeDefinition = shape.rotate180(); break;
             case ShapeRotation.CCW_90: shapeDefinition = shape.rotateCCW90(); break;

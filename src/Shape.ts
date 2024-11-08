@@ -70,9 +70,11 @@ export class ShapeRegistry {
         });
     }
 
-    public static selectRandom(): Shape {
-        const i = Math.floor(Math.random() * this.weighted.length);
+    public static randomInd(): number {
+        return Math.floor(Math.random() * this.weighted.length);
+    }
 
-        return this.weighted[i];
+    public static selectRandom(): Shape {
+        return this.weighted[this.randomInd()];
     }
 }

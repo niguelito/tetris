@@ -10,6 +10,14 @@ export interface SavedState {
     highScore: number;
     arenaState: ArenaState;
     settings: SavedSettings;
+    currentPiece: CurrentPiece;
+}
+
+export interface CurrentPiece {
+    piece: number;
+    x: number;
+    y: number;
+    rot: number;
 }
 
 export class State {
@@ -21,6 +29,9 @@ export class State {
     public static score = 0;
     public static highScore = 0;
     
+    public static currentPiece: Shape;
+    public static pieceX = 0;
+    public static pieceY = 0;
     public static arenaState: ArenaState = [];
 
     public static init(state: SavedState) {
@@ -47,7 +58,7 @@ export class State {
     public static putShape(shape: Shape, x: number, y: number, rot: ShapeRotation) {
         var shapeDefinition;
         switch (rot) {
-            case ShapeRotation.NORMAL: shapeDefinition = shape.shape; break;
+            default: shapeDefinition = shape.shape; break;
             case ShapeRotation.CW_90: shapeDefinition = shape.rotateCW90(); break;
             case ShapeRotation.CW_180: shapeDefinition = shape.rotate180(); break;
             case ShapeRotation.CCW_90: shapeDefinition = shape.rotateCCW90(); break;

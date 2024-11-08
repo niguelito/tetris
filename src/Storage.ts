@@ -2,6 +2,8 @@ import { instanceToPlain } from "class-transformer";
 import { Difficulty } from "./Settings";
 import { SavedState, State } from "./State";
 import crypto from 'crypto-js';
+import { ShapeRegistry } from "./Shape";
+import { ShapeRotation } from "./renderer/ShapeRenderer";
 
 export class GameStorage {
     public static SECRET_KEY = "bmlndWVsaXRvIGlzIGJhZCBhdCBjYWxjdWx1cw==";
@@ -14,6 +16,12 @@ export class GameStorage {
             settings: {
                 lang: "en",
                 difficulty: Difficulty.NORMAL
+            },
+            currentPiece: {
+                piece: ShapeRegistry.randomInd(),
+                x: 0,
+                y: 0,
+                rot: ShapeRotation.NORMAL
             }
         }
     }
@@ -46,6 +54,12 @@ export class GameStorage {
                 settings: {
                     lang: a.lang ? a.lang : "en",
                     difficulty: a.difficulty ? a.difficulty : Difficulty.NORMAL
+                },
+                currentPiece: {
+                    piece: this.resolveOrZero(a.currentPiece.piece),
+                    x: this.resolveOrZero(a.currentPiece.x),
+                    y: this.resolveOrZero(a.currentPiece.y),
+                    rot: this.resolveOrZero(a.currentPiece.rot)
                 }
             };
         } catch (err) {
