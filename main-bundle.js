@@ -206,7 +206,7 @@
                 GA_SESSION_DATA: e("sessionDataDumbass")
             },
             chromeStorage: {
-                HIGHSCORE: e("highScoreDumbas"),
+                HIGHSCORE: e("highScoreDumbass"),
                 ADS: e("stored-ads"),
                 INSTALL_VERSION: e("installVersion"),
                 GA_USER_ID: e("userId")
