@@ -201,12 +201,12 @@
         },
         storageKeys: {
             localStorage: {
-                GAMESTATE: "gameState",
-                GA_CLIENT_ID: e("clientId"),
-                GA_SESSION_DATA: e("sessionData")
+                GAMESTATE: "dumbassGameState",
+                GA_CLIENT_ID: e("clientIdDumbass"),
+                GA_SESSION_DATA: e("sessionDataDumbass")
             },
             chromeStorage: {
-                HIGHSCORE: e("highScore"),
+                HIGHSCORE: e("highScoreDumbas"),
                 ADS: e("stored-ads"),
                 INSTALL_VERSION: e("installVersion"),
                 GA_USER_ID: e("userId")
