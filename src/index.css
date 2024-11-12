@@ -118,7 +118,6 @@ main div.controls {
     font-size: 1rem;
     width: 100%;
     height: calc(100% - 7rem);
-    pointer-events: none;
     padding: 10px;
 }
 

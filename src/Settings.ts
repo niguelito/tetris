@@ -1,5 +1,6 @@
 import 'string-format-ts';
 import { en_us } from "./lang/en_us";
+import { es_es } from './lang/es_es';
 
 export class Difficulty {
     public static EASY = 1;
@@ -34,12 +35,13 @@ export interface LangLocalization {
 }
 
 export class Language {
-    private static allLanguages: LangLocalization[] = [
-        new en_us()
+    public static allLanguages: LangLocalization[] = [
+        new en_us(),
+        new es_es()
     ];
 
     private static defaultTranslation = this.allLanguages[0];
-    private static selectedTranslation = this.allLanguages[0];
+    public static selectedTranslation = this.allLanguages[0];
 
     public static update(lang: string): void {
         const selected = this.allLanguages.filter((l) => l.localization == lang);
