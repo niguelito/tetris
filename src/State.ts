@@ -29,9 +29,10 @@ export class State {
     public static score = 0;
     public static highScore = 0;
     
-    public static currentPiece: Shape;
+    public static currentPiece: number;
     public static pieceX = 0;
     public static pieceY = 0;
+    public static pieceRot = ShapeRotation.NORMAL;
     public static arenaState: ArenaState = [];
 
     public static init(state: SavedState) {
@@ -69,6 +70,21 @@ export class State {
                 if (shapeDefinition[row][col] > 0) {
                     this.arenaState[x + col][y + row] = shape.color.getHexNumber();
                 }
+            }
+        }
+    }
+
+    public static export(): SavedState {
+        return {
+            score: this.score,
+            highScore: this.highScore,
+            arenaState: this.arenaState,
+            settings: Settings.export(),
+            currentPiece: {
+                piece: this.currentPiece,
+                x: this.pieceX,
+                y: this.pieceY,
+                rot: this.pieceRot
             }
         }
     }

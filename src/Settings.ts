@@ -26,6 +26,13 @@ export class Settings {
     public static weightedDifficulty(...nums: number[]) {
         return nums[this.currentDifficulty];
     }
+
+    public static export(): SavedSettings {
+        return {
+            lang: Language.selectedTranslation.localization,
+            difficulty: this.currentDifficulty
+        }
+    }
 }
 
 export interface LangLocalization {

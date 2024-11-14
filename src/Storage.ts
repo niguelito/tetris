@@ -18,7 +18,7 @@ export class GameStorage {
                 difficulty: Difficulty.NORMAL
             },
             currentPiece: {
-                piece: ShapeRegistry.randomInd(),
+                piece: ShapeRegistry.selectShape(),
                 x: 0,
                 y: 0,
                 rot: ShapeRotation.NORMAL

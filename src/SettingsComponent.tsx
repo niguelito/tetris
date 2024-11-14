@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Language } from "./Settings";
+import { GameStorage } from "./Storage";
+import { State } from "./State";
 
 export function SettingsSelector(): JSX.Element {
-    var [lang, setLang] = useState(Language.selectedTranslation);
+    var [lang, setLang] = useState(Language.selectedTranslation.localization);
     
     return (
         <>
@@ -11,7 +13,11 @@ export function SettingsSelector(): JSX.Element {
             </div>
 
             <div className="row">
-                <select value={lang.localization} name="" id="">
+                <select onChange={(e) => {
+                    Language.update(e.target.value);
+                    setLang(e.target.value);
+                    GameStorage.save(State.export());
+                }} value={lang} name="" id="">
                     {Language.allLanguages.map(lang => <option value={lang.localization} key={lang.localization}>{lang.name}</option>)}
                 </select>
             </div>
