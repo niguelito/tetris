@@ -7,7 +7,7 @@ import { ShapeRotation } from "./renderer/ShapeRenderer";
 
 export class GameStorage {
     public static SECRET_KEY = "bmlndWVsaXRvIGlzIGJhZCBhdCBjYWxjdWx1cw==";
-    public static name = "data6ff3f944";
+    public static dataKey = "data6ff3f944";
 
     public static createNewSave(): SavedState {
         return {
@@ -80,12 +80,12 @@ export class GameStorage {
         const f = this.export(state);
         const encodedValue = encodeURIComponent(f);
 
-        localStorage.setItem(this.name, encodedValue);
+        localStorage.setItem(this.dataKey, encodedValue);
     }
 
     public static load(): SavedState {
         try {
-            const save = localStorage.getItem(this.name);
+            const save = localStorage.getItem(this.dataKey);
 
             if (save) {
                 const r = decodeURIComponent(save);
