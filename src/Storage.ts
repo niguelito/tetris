@@ -7,6 +7,7 @@ import { ShapeRotation } from "./renderer/ShapeRenderer";
 
 export class GameStorage {
     public static SECRET_KEY = "bmlndWVsaXRvIGlzIGJhZCBhdCBjYWxjdWx1cw==";
+    public static name = "data6ff3f944";
 
     public static createNewSave(): SavedState {
         return {
@@ -77,28 +78,17 @@ export class GameStorage {
 
     public static save(state: SavedState) {
         const f = this.export(state);
-
-        const expirationDate = new Date('9999-12-31T23:59:59');
-
         const encodedValue = encodeURIComponent(f);
 
-        document.cookie = `state=${encodedValue}; expires=${expirationDate.toUTCString()}; path=/`;
+        localStorage.setItem(this.name, encodedValue);
     }
 
     public static load(): SavedState {
         try {
-            const cookieString = document.cookie;
+            const save = localStorage.getItem(this.name);
 
-            const cookies = cookieString.split(';');
-
-            const saveCookie = cookies.find((cookie) =>
-                cookie.trim().startsWith('state=')
-            );
-
-            if (saveCookie) {
-                const encodedValue = saveCookie.split('=')[1];
-
-                const r = decodeURIComponent(encodedValue);
+            if (save) {
+                const r = decodeURIComponent(save);
 
                 const p = this.parseSave(r);
 
