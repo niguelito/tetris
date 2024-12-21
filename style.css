@@ -81,6 +81,10 @@ main>button#pause {
     transform: translate(50%, -50%);
 }
 
+main>button#blocks {
+    left: 90px;
+}
+
 main>button:hover {
     background-color: rgba(170, 170, 170, 0.35);
 }
