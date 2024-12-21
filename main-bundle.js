@@ -265,7 +265,7 @@
             RIGHT: ["d", "ArrowRight"],
             HARDDROP: [" "]
         },
-        score points: {
+        scorePoints: {
             DROP: 1,
             HARDDROP: 3,
             LANDING: 10,
