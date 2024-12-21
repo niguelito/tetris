@@ -253,7 +253,7 @@ createShape("#ff08ea", [
     [1, 1, 1, 1, 1],
     [0, 0, 0, 0, 0],
     [1, 0, 1, 0, 1]
-], "The Star", "Duncan");
+], "Scull", "Duncan");
 
 function getShapes() {
     return shapes;
