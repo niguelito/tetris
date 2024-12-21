@@ -209,7 +209,14 @@
                 [0, 27, 0],
                 [0, 0, 0]
             ],
-        ],
+            [
+                [28, 28, 28, 28, 28],
+                [28, 0, 28, 0, 28],
+                [28, 28, 28, 28, 28],
+                [0, 0, 0, 0, 0],
+                [28, 0, 28, 0, 28]
+            ]
+        [
         ARENA_WIDTH: 15,
         ARENA_HEIGHT: 27,
         SCALE: 45,
@@ -248,7 +255,8 @@
             "#8B008B",
             "#4f3528",
             "#0d0d0d",
-            "#020101"
+            "#060505",
+            "#ff08ea"
         ],
         controls: {
             ROTATE: ["w", "ArrowUp"],
@@ -257,7 +265,7 @@
             RIGHT: ["d", "ArrowRight"],
             HARDDROP: [" "]
         },
-        scorePoints: {
+        score points: {
             DROP: 1,
             HARDDROP: 3,
             LANDING: 10,
