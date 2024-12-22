@@ -23,6 +23,23 @@ function createShape(color, shape, name, credit) {
     colors.push(color);
 }
 
+function getShapes() {
+    return shapes;
+}
+
+function getColors() {
+    return colors;
+}
+
+/**
+ * 
+ * @returns {{name: string, credit: string, shape: number[][], color: string, id: number}[]} metadata
+ */
+function getMetadata() {
+    return metadata;
+}
+
+/******************************- SHAPE DEFINITIONS -******************************************/
 createShape("#FF0D72", [
     [1, 1, 1],
     [0, 1, 0],
@@ -212,7 +229,7 @@ createShape("#8B008B", [
     [1, 1, 0, 0], 
     [0, 1, 0, 0], 
     [0, 1, 1, 1]
-], "The Magenta Menace", "Microsoft Copilot");
+], "The Uterus", "Microsoft Copilot");
 
 createShape("#4f3528", [
     [0, 0, 1, 1, 1, 0],
@@ -223,7 +240,7 @@ createShape("#4f3528", [
     [0, 0, 0, 1, 0, 0]   
 ], "Average Black Guy", "Duncan");
 
-createShape("#0d0d0d", [
+createShape("#3d3d3d", [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -255,18 +272,9 @@ createShape("#ff08ea", [
     [1, 0, 1, 0, 1]
 ], "Scull", "Duncan");
 
-function getShapes() {
-    return shapes;
-}
-
-function getColors() {
-    return colors;
-}
-
-/**
- * 
- * @returns {{name: string, credit: string, shape: number[][], color: string, id: number}[]} metadata
- */
-function getMetadata() {
-    return metadata;
-}
+createShape("#423a4a", [
+    [1, 1, 1, 1],
+    [1, 0, 0, 1],
+    [1, 0, 0, 1],
+    [1, 1, 1, 1]
+], "The Goal", "Jackson");
