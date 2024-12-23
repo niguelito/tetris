@@ -1,0 +1,146 @@
+:root {
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+
+    width: 100vw;
+}
+
+$canvas-width: 100vh * 0.56;
+$canvas-height: 100vh;
+
+html,
+body {
+    background-color: #222;
+    margin: 0;
+    padding: 0;
+
+    color: white;
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+
+    &,
+    canvas,
+    main {
+        width: $canvas-width;
+        overflow: hidden;
+        height: $canvas-height;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+*[hidden] {
+    display: none !important;
+}
+
+main {
+    $canvas-margin: 3px;
+    $square: 30px;
+
+    position: relative;
+    margin: $canvas-margin;
+
+    background-color: black;
+
+    user-select: none;
+
+    & > button {
+        $padding: 6px;
+        $padding-active: 5px;
+        $margin: $square * 1.5;
+
+        position: absolute;
+        top: $margin;
+        margin: 0;
+        padding: 0;
+        border: none;
+        cursor: pointer;
+
+        background-color: transparent;
+
+        border-radius: 4px;
+        padding: $padding;
+        outline: none;
+
+        transition: all 0.04s ease;
+        transform: translate(-50%, -50%);
+
+        max-width: $square + $padding * 2;
+        max-height: $square + $padding * 2;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            position: relative;
+            width: $square;
+            height: $square;
+        }
+
+        &#restart {
+            left: $margin;
+        }
+
+        &#pauseplay {
+            right: $margin;
+            transform: translate(50%, -50%);
+        }
+
+        &#controls {
+            left: $margin * 2;
+        }
+
+        &#settings {
+            right: $margin * 2;
+            transform: translate(50%, -50%);
+        }
+
+        &#blocks {
+            left: $margin * 3;
+        }
+
+        &#back {
+            right: 50%;
+            transform: translate(50%, -50%);
+            font-size: 50px;
+            color: white;
+        }
+
+        &:hover {
+            background-color: rgba(170, 170, 170, 0.35);
+        }
+
+        &:active {
+            padding: $padding-active;
+        }
+    }
+
+    &[data-paused='true'] {
+        & > button#pauseplay {
+            & > img.pause {
+                display: none;
+            }
+
+            & > img.play {
+                display: block;
+            }
+        }
+    }
+
+    &[data-paused='false'] {
+        & > button#pauseplay {
+            & > img.pause {
+                display: block;
+            }
+
+            & > img.play {
+                display: none;
+            }
+        }
+    }
+}

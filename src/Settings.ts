@@ -1,13 +1,13 @@
 import 'string-format-ts';
-import { en_us } from "./lang/en_us";
-import { es_es } from './lang/es_es';
+import en_us from "./lang/en_us.ts";
+import es_es from './lang/es_es.ts';
 
 export class Difficulty {
-    public static EASY = 1;
-    public static NORMAL = 2;
-    public static MEDIUM = 3;
-    public static HARD = 4;
-    public static IMPOSSIBLE = 5;
+    public static EASY = 0;
+    public static NORMAL = 1;
+    public static MEDIUM = 2;
+    public static HARD = 3;
+    public static IMPOSSIBLE = 4;
 }
 
 export interface SavedSettings {
@@ -18,9 +18,10 @@ export interface SavedSettings {
 export class Settings {
     static currentDifficulty = Difficulty.NORMAL;
 
-    public static update(settings: SavedSettings) {
+    public static init(settings: SavedSettings) {
+        console.log(settings)
         Language.update(settings.lang);
-        this.currentDifficulty = settings.difficulty;
+        this.currentDifficulty = settings.difficulty - 1;
     }
 
     public static weightedDifficulty(...nums: number[]) {
@@ -30,7 +31,7 @@ export class Settings {
     public static export(): SavedSettings {
         return {
             lang: Language.selectedTranslation.localization,
-            difficulty: this.currentDifficulty
+            difficulty: this.currentDifficulty + 1
         }
     }
 }
@@ -79,5 +80,15 @@ export class Language {
         const formatted = thing.format(...args);
     
         return formatted;
+    }
+
+    public static updateTexts() {
+        var texts = document.querySelectorAll("i18n");
+        texts.forEach((text) => {
+            var key = text.innerHTML;
+            if (key) {
+                text.innerHTML = this.translate(key);
+            }
+        });
     }
 }

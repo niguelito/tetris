@@ -1,13 +1,38 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ripoff Tetris</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+    <title>Tetris</title>
+
+    <link rel="stylesheet" href="./src/style.scss">
+</head>
+
+<body>
+    <main data-paused="false">
+        <button id="restart">
+            <img src="./assets/restart.png" alt="Restart" />
+        </button>
+        <button id="controls" onclick="document.location.href = './controls.html'">
+            <img src="./assets/controls.png" alt="controls" />
+        </button>
+        <button id="pauseplay">
+            <img class="pause" src="./assets/pause.png" alt="pause" />
+            <img class="play" src="./assets/play.png" alt="play" />
+        </button>
+        <button id="settings" onclick="document.location.href = './settings.html'">
+            <img src="./assets/settings.png" alt="settings">
+        </button>
+        <button id="blocks" onclick="document.location.href = './blocks.html'">
+            <img src="./assets/blocks.png" alt="blocks">
+        </button>
+
+        <canvas id="canvas" width="675" height="1215"></canvas>
+    </main>
+
+    <script type="module" src="./src/main.ts"></script>
+</body>
+
 </html>

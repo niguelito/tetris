@@ -1,8 +1,7 @@
-import { GuiGraphics } from "./GuiGraphics";
+import GuiGraphics from "./GuiGraphics";
 import { Shape } from "../Shape";
 import { State } from "../State";
-import { Color } from "./Color";
-import { Game } from "../Game";
+import Color from "./Color";
 
 export class ShapeRotation {
     public static NORMAL = 0;
@@ -15,7 +14,7 @@ export class ShapeRenderer {
     public static renderShape(graphics: GuiGraphics, shape: Shape, x: number, y: number, rotation = ShapeRotation.NORMAL) {
         var shapeDefinition;
         switch (rotation) {
-            default: shapeDefinition = shape.shape; break;
+            default: shapeDefinition = shape.shape; break; 
             case ShapeRotation.CW_90: shapeDefinition = shape.rotateCW90(); break;
             case ShapeRotation.CW_180: shapeDefinition = shape.rotate180(); break;
             case ShapeRotation.CCW_90: shapeDefinition = shape.rotateCCW90(); break;
@@ -41,13 +40,18 @@ export class ShapeRenderer {
     }
 
     static renderArena(graphics: GuiGraphics) {
-        for (let i = 0; i < State.arenaState.length; i++) {
-            for (let j = 0; j < State.arenaState[i].length; j++) {
-                if (State.arenaState[i][j] != null) {
-                    var y = Game.arenaHeight - Game.deathHeight;
-                    graphics.drawRect(Color.hex(State.arenaState[i][j] as number), i, y + j, 1, 1);
+        State.arenaState.forEach((row, y) => {
+            row.forEach((cell, x) => {
+                if (cell != null) {
+                    graphics.drawRect(
+                        Color.hex(cell),
+                        x,
+                        y,
+                        1,
+                        1
+                    );
                 }
-            }
-        }
+            });
+        });
     }
 }

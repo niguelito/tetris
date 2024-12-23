@@ -1,4 +1,4 @@
-export class Color {
+export default class Color {
     public static RED = Color.rgb(255, 0, 0);
     public static GREEN = Color.rgb(0, 255, 0);
     public static BLUE = Color.rgb(0, 0, 255);

@@ -1,15 +1,14 @@
 import { Game } from "./Game";
-import { SavedSettings, Settings } from "./Settings";
-import { Shape } from "./Shape";
+import { Settings } from "./Settings";
+import { Shape, ShapeRegistry } from "./Shape";
 import { ShapeRotation } from "./renderer/ShapeRenderer";
 
 export type ArenaState = (number | null)[][];
 
 export interface SavedState {
     score: number;
-    highScore: number;
+    highScores: number[];
     arenaState: ArenaState;
-    settings: SavedSettings;
     currentPiece: CurrentPiece;
 }
 
@@ -27,7 +26,9 @@ export class State {
     public static get lineClear() { return Settings.weightedDifficulty(75, 200, 450, 800, 1500) };
 
     public static score = 0;
-    public static highScore = 0;
+    public static get highScore() { return this.highScores[Settings.currentDifficulty] || 0; };
+    public static set highScore(value: number) { this.highScores[Settings.currentDifficulty] = value; }
+    public static highScores: number[] = [];
     
     public static currentPiece: number;
     public static pieceX = 0;
@@ -35,22 +36,22 @@ export class State {
     public static pieceRot = ShapeRotation.NORMAL;
     public static arenaState: ArenaState = [];
 
+    public static isPaused = false;
+
     public static init(state: SavedState) {
         this.score = state.score;
-        this.highScore = state.highScore;
+        this.highScores = state.highScores;
         this.arenaState = state.arenaState;
-        Settings.update(state.settings);
     }
 
     public static emptyArena(): ArenaState {
         var arenaState = [];
 
-        for (let i = 0; i < Game.deathHeight; i++) {
-            var r = [];
-            for (let j = 0; j < Game.arenaWidth; j++) {
-                r.push(null);
-            }
-            arenaState.push(r);
+        // initialize matrix with nulls
+        // Game.arenaWidth is the width of the arena
+        // Game.arenaHeight is the height of the arena
+        for (let i = 0; i < Game.arenaHeight; i++) {
+            arenaState.push(new Array(Game.arenaWidth).fill(null));
         }
 
         return arenaState;
@@ -65,21 +66,124 @@ export class State {
             case ShapeRotation.CCW_90: shapeDefinition = shape.rotateCCW90(); break;
         }
 
-        for (var row = 0; row < shapeDefinition.length; row++) {
-            for (var col = 0; col < shapeDefinition[0].length; col++) {
-                if (shapeDefinition[row][col] > 0) {
-                    this.arenaState[x + col][y + row] = shape.color.getHexNumber();
+        shapeDefinition.forEach((row, i) => {
+            row.forEach((cell, j) => {
+                if (cell > 0) {
+                    try {
+                        this.arenaState[y + i][x + j] = shape.color.getHexNumber();
+                    } catch (e) {}
+                }
+            });
+        });
+    }
+
+    public static gameOver(): boolean {
+        var topRows = this.arenaState.slice(0, Game.arenaHeight - Game.deathHeight);
+        return topRows.some((row) => row.some((cell) => cell !== null));
+    }
+
+    public static collides(): boolean {
+        var shape = ShapeRegistry.getShape(this.currentPiece);
+        var shapeDefinition;
+        switch (this.pieceRot) {
+            default: shapeDefinition = shape.shape; break;
+            case ShapeRotation.CW_90: shapeDefinition = shape.rotateCW90(); break;
+            case ShapeRotation.CW_180: shapeDefinition = shape.rotate180(); break;
+            case ShapeRotation.CCW_90: shapeDefinition = shape.rotateCCW90(); break;
+        }
+
+        var width = shapeDefinition[0].length;
+        var height = shapeDefinition.length;
+
+        for (let i = 0; i < height; i++) {
+            if (this.pieceY + i < 0) continue;
+
+            for (let j = 0; j < width; j++) {
+                if (shapeDefinition[i][j] > 0) {
+                    var y = this.pieceY + i + 1;
+
+                    if (y == Game.arenaHeight) {
+                        return true;
+                    } else {
+                        if (this.arenaState[y][this.pieceX + j] != null) {
+                            return true;
+                        }
+                    }
                 }
             }
         }
+
+        return false;
+    }
+
+    public static canMove(deltaX: number) {
+        var shape = ShapeRegistry.getShape(this.currentPiece);
+        var shapeDefinition;
+        switch (this.pieceRot) {
+            default: shapeDefinition = shape.shape; break;
+            case ShapeRotation.CW_90: shapeDefinition = shape.rotateCW90(); break;
+            case ShapeRotation.CW_180: shapeDefinition = shape.rotate180(); break;
+            case ShapeRotation.CCW_90: shapeDefinition = shape.rotateCCW90(); break;
+        }
+
+        var width = shapeDefinition[0].length;
+        var height = shapeDefinition.length;
+
+        for (let i = 0; i < height; i++) {
+            if (this.pieceY + i < 0) continue;
+
+            for (let j = 0; j < width; j++) {
+                if (shapeDefinition[i][j] > 0) {
+                    var x = this.pieceX + j + deltaX;
+
+                    if (x < 0 || x >= Game.arenaWidth) {
+                        return false;
+                    }
+
+                    if (this.pieceY + i >= 0 && this.arenaState[this.pieceY + i][x] != null) {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
+
+    public static canRotate(rot: number) {
+        var shape = ShapeRegistry.getShape(this.currentPiece);
+        var shapeDefinition;
+        switch (rot) {
+            default: shapeDefinition = shape.shape; break;
+            case ShapeRotation.CW_90: shapeDefinition = shape.rotateCW90(); break;
+            case ShapeRotation.CW_180: shapeDefinition = shape.rotate180(); break;
+            case ShapeRotation.CCW_90: shapeDefinition = shape.rotateCCW90(); break;
+        }
+
+        // check if any of the cells would be out of bounds
+        // or if any of the cells would collide with a cell in the arena
+        for (let i = 0; i < shapeDefinition.length; i++) {
+            for (let j = 0; j < shapeDefinition[i].length; j++) {
+                if (shapeDefinition[i][j] > 0) {
+                    if (this.pieceX + j < 0 || this.pieceX + j >= Game.arenaWidth) {
+                        return false;
+                    }
+
+                    if (this.pieceY + i >= 0 && this.arenaState[this.pieceY + i][this.pieceX + j] != null) {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return true;
     }
 
     public static export(): SavedState {
         return {
             score: this.score,
-            highScore: this.highScore,
+            highScores: this.highScores,
             arenaState: this.arenaState,
-            settings: Settings.export(),
             currentPiece: {
                 piece: this.currentPiece,
                 x: this.pieceX,

@@ -1,14 +1,24 @@
 import { Game } from '../Game';
-import { Color } from './Color';
+import Color from './Color';
 
-export class GuiGraphics {
+export default class GuiGraphics {
     public static FONT = 'Arial, Helvetica, sans-serif';
     private context: CanvasRenderingContext2D;
     private delta: number;
+    private scale: number;
     
     public constructor(context: CanvasRenderingContext2D, delta: number) {
         this.context = context;
         this.delta = delta;
+        this.scale = Game.scale;
+    }
+
+    public pushScale(scale: number) {
+        this.scale = scale;
+    }
+
+    public popScale() {
+        this.scale = Game.scale;
     }
 
     public getDelta() {
@@ -16,7 +26,7 @@ export class GuiGraphics {
     }
 
     public resizePix(p: number): number {
-        return p * Game.scale;
+        return p * this.scale + 0.5;
     }
 
     public drawRect(color: Color, x: number, y: number, width: number, height: number, sized = true) {

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris Controls</title>
+
+    <link rel="stylesheet" href="./src/controls.scss">
+</head>
+
+<body>
+    <main>
+        <button id="back" onclick="document.location.href = '../'">&times;</button>
+
+        <div id="controls">
+            <div class="row">
+                <h1><i18n>controls</i18n></h1>
+            </div>
+
+            <p>↻ <i18n>controls.rotate</i18n></p>
+
+            <div class="row">
+                <kbd>↑</kbd>
+                <div class="spacer"></div>
+                <kbd>W</kbd>
+            </div>
+
+            <p>← <i18n>controls.leftright</i18n> →</p>
+
+            <div class="row">
+                <kbd>←</kbd>
+                <kbd>→</kbd>
+                <div class="spacer"></div>
+                <kbd>A</kbd>
+                <kbd>D</kbd>
+            </div>
+
+            <p>↓ <i18n>controls.down</i18n> ↓</p>
+
+            <div class="row">
+                <kbd>↓</kbd>
+                <div class="spacer"></div>
+                <kbd>S</kbd>
+            </div>
+
+            <p>&dArr; <i18n>controls.drop</i18n> &dArr;</p>
+
+            <kbd class="space">Space</kbd>
+
+            <p>&#x23F8; <i18n>controls.pauseplay</i18n> &#9658;</p>
+            
+            <div class="row">
+                <kbd>Esc</kbd>
+                <div class="spacer"></div>
+                <kbd>Tab</kbd>
+                <div class="spacer"></div>
+                <kbd>P</kbd>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" lang="ts">
+        import { Difficulty, Language, Settings } from "./src/Settings";
+        import { GameStorage } from "./src/Storage";
+
+        var state = GameStorage.loadSettings();
+        Settings.init(state);
+
+        Language.updateTexts();
+    </script>
+</body>
+
+</html>

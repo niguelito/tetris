@@ -5,18 +5,11 @@ export interface KeyBinding {
     callback: KeyBindingCallback;
 }
 
-export class KeyboardHandler {
-    public static rotate = ['w', 'ArrowUp'];
-    public static left = ['a', 'ArrowLeft'];
-    public static drop = ['s', 'ArrowDown'];
-    public static right = ['d', 'ArrowRight'];
-    public static hardDrop = [' ', 'x'];
-
+export default class KeyboardHandler {
     static bindings: KeyBinding[] = [];
 
     public static init() {
         window.document.addEventListener('keyup', this.keyUp.bind(this));
-
         window.document.addEventListener('keydown', this.keyDown.bind(this));
     }
 
@@ -25,21 +18,25 @@ export class KeyboardHandler {
     }
 
     static keyUp(e: KeyboardEvent) {
-        var k = e.key.toLowerCase();
+        if (e.repeat) return;
+        e.preventDefault();
+        var k = e.key;
 
         this.bindings.forEach(b => {
             if (b.keys.includes(k)) {
-                b.callback(true, e);
+                b.callback(false, e);
             }
         });
     }
 
     static keyDown(e: KeyboardEvent) {
-        var k = e.key.toLowerCase();
+        if (e.repeat) return;
+        e.preventDefault();
+        var k = e.key;
 
         this.bindings.forEach(b => {
             if (b.keys.includes(k)) {
-                b.callback(false, e);
+                b.callback(true, e);
             }
         });
     }
