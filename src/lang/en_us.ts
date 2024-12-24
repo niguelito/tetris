@@ -1,4 +1,4 @@
-import { LangLocalization } from "../Settings";
+import { LangLocalization } from "../state/Settings";
 
 export default class en_us implements LangLocalization {
     name = "English";
@@ -14,9 +14,9 @@ export default class en_us implements LangLocalization {
         'difficulty.4': "Impossible",
 
         'rarity.1': "Rare",
-        'rarity.5': "Uncommon",
-        'rarity.8': "Common",
-        'rarity.12': "Very Common",
+        'rarity.2': "Uncommon",
+        'rarity.3': "Common",
+        'rarity.5': "Very Common",
 
         'controls': "Controls",
         'controls.rotate': "Rotate",
@@ -29,6 +29,11 @@ export default class en_us implements LangLocalization {
         'settings.language': "Language",
         'settings.difficulty': "Difficulty",
         'settings.reset': 'Reset Settings',
+        'settings.download': 'Download',
+        'settings.download.save': 'Save',
+        'settings.download.load': 'Load',
+        'settings.download.reset': 'Reset',
+        'settings.download.error': 'Error loading save file',
 
         'blocks': "Shapes",
         'blocks.description': 'Shapes that may appear while playing.',

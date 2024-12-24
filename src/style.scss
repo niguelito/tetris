@@ -111,6 +111,11 @@ main {
             color: white;
         }
 
+        &#download {
+            right: $margin * 3;
+            transform: translate(50%, -50%);
+        }
+
         &:hover {
             background-color: rgba(170, 170, 170, 0.35);
         }

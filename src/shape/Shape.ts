@@ -1,5 +1,5 @@
-import Color from "./renderer/Color";
-import { Settings } from "./Settings";
+import Color from "../renderer/Color";
+import { Difficulty, Settings } from "../state/Settings";
 
 export type ShapeDefinition = number[][];
 
@@ -80,9 +80,9 @@ export class Shape implements ShapeData {
 
 export class ShapeWeights {
     public static RARE = 1;
-    public static UNCOMMON = 5;
-    public static COMMON = 8;
-    public static VERY_COMMON = 12;
+    public static UNCOMMON = 2;
+    public static COMMON = 3;
+    public static VERY_COMMON = 5;
 }
 
 export class ShapeRegistry {
@@ -97,6 +97,11 @@ export class ShapeRegistry {
         this.registered.forEach((shape) => {
             if (Settings.currentDifficulty < shape.minDiff) return;
 
+            if (Settings.currentDifficulty == Difficulty.EASY) {
+                this.weighted.push(shape);
+                return;
+            }
+            
             for (let i = 0; i < shape.weight; i++) {
                 this.weighted.push(shape);
             }

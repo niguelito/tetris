@@ -1,9 +1,9 @@
-import registerShapes from './RegisterShapes.ts';
+import registerShapes from './shape/RegisterShapes.ts';
 import GuiGraphics from './renderer/GuiGraphics.ts';
 import { ShapeRenderer } from './renderer/ShapeRenderer.ts';
-import { Language, Settings } from './Settings.ts';
-import { ShapeRegistry } from './Shape.ts';
-import { GameStorage } from "./Storage";
+import { Language, Settings } from './state/Settings.ts';
+import { ShapeRegistry } from './shape/Shape.ts';
+import { GameStorage } from "./state/Storage.ts";
 
 var state = GameStorage.loadSettings();
 Settings.init(state);

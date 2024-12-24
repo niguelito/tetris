@@ -60,4 +60,13 @@ export default class Color {
     public getHexNumber() {
         return (this.red << 16) | (this.green << 8) | this.blue;
     }
+
+    public brighter(amount: number) {
+        return new Color(
+            Math.min(255, this.red + amount),
+            Math.min(255, this.green + amount),
+            Math.min(255, this.blue + amount),
+            this.alpha
+        );
+    }
 }

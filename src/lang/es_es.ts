@@ -1,4 +1,4 @@
-import { LangLocalization } from "../Settings";
+import { LangLocalization } from "../state/Settings";
 
 export default class es_es implements LangLocalization {
     name: string = "Español";

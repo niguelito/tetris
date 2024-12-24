@@ -1,14 +1,14 @@
 import { Game } from "../Game";
-import { Language, Settings } from "../Settings";
-import { ShapeRegistry } from "../Shape";
-import { State } from "../State";
+import { Language, Settings } from "../state/Settings";
+import { ShapeRegistry } from "../shape/Shape";
+import { State } from "../state/State";
 import Color from "./Color";
 import GuiGraphics from "./GuiGraphics";
 import { ShapeRenderer } from "./ShapeRenderer";
 
 export default class GameRenderer {
     public static deathLineColor = Color.RED;
-    public static deathLineSize = 8 / 45;
+    public static deathLineSize = 2 / 45;
 
     public static render(graphics: GuiGraphics) {
         graphics.drawRect(Color.BLACK, 0, 0, Game.screenWidth, Game.screenHeight, false);
@@ -16,7 +16,13 @@ export default class GameRenderer {
         ShapeRenderer.renderArena(graphics);
 
         if (State.currentPiece && !State.gameOver()) {
-            ShapeRenderer.renderShape(graphics, ShapeRegistry.getShape(State.currentPiece), State.pieceX, State.pieceY, State.pieceRot);
+            var shape = ShapeRegistry.getShape(State.currentPiece);
+            var x = State.pieceX;
+            var y = State.pieceY;
+            var rot = State.pieceRot;
+
+            if (!State.collides()) ShapeRenderer.renderShape(graphics, shape, x, y, rot);
+            else ShapeRenderer.renderShape(graphics, shape, x, y, rot, shape.color.brighter(-50));
         }
 
         this.renderDeathLine(graphics);

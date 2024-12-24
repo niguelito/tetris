@@ -1,6 +1,6 @@
 import GuiGraphics from "./GuiGraphics";
-import { Shape } from "../Shape";
-import { State } from "../State";
+import { Shape } from "../shape/Shape";
+import { State } from "../state/State";
 import Color from "./Color";
 
 export class ShapeRotation {
@@ -11,7 +11,7 @@ export class ShapeRotation {
 }
 
 export class ShapeRenderer {
-    public static renderShape(graphics: GuiGraphics, shape: Shape, x: number, y: number, rotation = ShapeRotation.NORMAL) {
+    public static renderShape(graphics: GuiGraphics, shape: Shape, x: number, y: number, rotation = ShapeRotation.NORMAL, color = shape.color) {
         var shapeDefinition;
         switch (rotation) {
             default: shapeDefinition = shape.shape; break; 
@@ -27,7 +27,7 @@ export class ShapeRenderer {
 
                     if (cellValue != 0) {
                         graphics.drawRect(
-                            shape.color,
+                            color,
                             (x + col),
                             (y + row),
                             1,

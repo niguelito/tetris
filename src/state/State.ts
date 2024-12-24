@@ -1,7 +1,7 @@
-import { Game } from "./Game";
+import { Game } from "../Game";
 import { Settings } from "./Settings";
-import { Shape, ShapeRegistry } from "./Shape";
-import { ShapeRotation } from "./renderer/ShapeRenderer";
+import { Shape, ShapeRegistry } from "../shape/Shape";
+import { ShapeRotation } from "../renderer/ShapeRenderer";
 
 export type ArenaState = (number | null)[][];
 
@@ -20,11 +20,6 @@ export interface CurrentPiece {
 }
 
 export class State {
-    public static get drop() { return Settings.weightedDifficulty(1, 3, 5, 8, 10) }
-    public static get hardDrop() { return Settings.weightedDifficulty(3, 5, 8, 10, 15) };
-    public static get landing() { return Settings.weightedDifficulty(10, 20, 50, 80, 100) };
-    public static get lineClear() { return Settings.weightedDifficulty(75, 200, 450, 800, 1500) };
-
     public static score = 0;
     public static get highScore() { return this.highScores[Settings.currentDifficulty] || 0; };
     public static set highScore(value: number) { this.highScores[Settings.currentDifficulty] = value; }
@@ -42,6 +37,16 @@ export class State {
         this.score = state.score;
         this.highScores = state.highScores;
         this.arenaState = state.arenaState;
+        
+        this.currentPiece = state.currentPiece.piece;
+        this.pieceX = state.currentPiece.x;
+        this.pieceY = state.currentPiece.y;
+        this.pieceRot = state.currentPiece.rot;
+    }
+
+    public static awardPoints(amount: number) {
+        this.score += amount;
+        this.highScore = Math.max(this.score, this.highScore);
     }
 
     public static emptyArena(): ArenaState {
@@ -75,6 +80,18 @@ export class State {
                 }
             });
         });
+    }
+
+    public static getLines(): number[] {
+        var nums: number[] = [];
+
+        for (let i = 0; i < Game.arenaHeight; i++) {
+            if (this.arenaState[i].every((cell) => cell !== null)) {
+                nums.push(i);
+            }
+        }
+
+        return nums;
     }
 
     public static gameOver(): boolean {
@@ -177,6 +194,16 @@ export class State {
         }
 
         return true;
+    }
+
+    public static restart() {
+        this.score = 0;
+        this.arenaState = this.emptyArena();
+
+        this.currentPiece = ShapeRegistry.selectShape();
+        this.pieceX = Math.floor(Game.arenaWidth / 2 - ShapeRegistry.width(this.currentPiece) / 2);
+        this.pieceY = ShapeRegistry.height(this.currentPiece) * -1;
+        this.pieceRot = 0;
     }
 
     public static export(): SavedState {

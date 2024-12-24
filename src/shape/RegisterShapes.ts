@@ -1,5 +1,5 @@
-import Color from "./renderer/Color";
-import { Difficulty } from "./Settings";
+import Color from "../renderer/Color";
+import { Difficulty } from "../state/Settings";
 import { ShapeRegistry, ShapeWeights } from "./Shape";
 
 export default function registerShapes() {
@@ -135,7 +135,7 @@ export default function registerShapes() {
         ],
         weight: ShapeWeights.UNCOMMON,
         color: Color.hex(0x5E538C),
-        minDiff: Difficulty.NORMAL
+        minDiff: Difficulty.MEDIUM
     });
     
     ShapeRegistry.register({
@@ -231,7 +231,7 @@ export default function registerShapes() {
             [1, 0, 0, 1],
             [1, 0, 0, 1]
         ],
-        weight: ShapeWeights.COMMON,
+        weight: ShapeWeights.UNCOMMON,
         color: Color.hex(0xe3cf5d),
         minDiff: Difficulty.HARD
     });
@@ -297,7 +297,7 @@ export default function registerShapes() {
             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
         ],
-        weight: ShapeWeights.UNCOMMON,
+        weight: ShapeWeights.RARE,
         color: Color.hex(0xb2bf9f),
         minDiff: Difficulty.HARD
     });
@@ -338,7 +338,7 @@ export default function registerShapes() {
         ],
         weight: ShapeWeights.RARE,
         color: Color.hex(0xFF4500),
-        minDiff: Difficulty.HARD
+        minDiff: Difficulty.IMPOSSIBLE
     });
 
     ShapeRegistry.register({
@@ -352,7 +352,7 @@ export default function registerShapes() {
         ],
         weight: ShapeWeights.RARE,
         color: Color.hex(0x8B008B),
-        minDiff: Difficulty.HARD
+        minDiff: Difficulty.IMPOSSIBLE
     });
 
     ShapeRegistry.register({
@@ -421,7 +421,7 @@ export default function registerShapes() {
         ],
         weight: ShapeWeights.RARE,
         color: Color.hex(0xff08ea),
-        minDiff: Difficulty.HARD
+        minDiff: Difficulty.IMPOSSIBLE
     });
 
     ShapeRegistry.register({

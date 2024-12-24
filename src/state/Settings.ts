@@ -1,6 +1,6 @@
 import 'string-format-ts';
-import en_us from "./lang/en_us.ts";
-import es_es from './lang/es_es.ts';
+import en_us from "../lang/en_us.ts";
+import es_es from '../lang/es_es.ts';
 
 export class Difficulty {
     public static EASY = 0;

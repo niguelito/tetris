@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="./icon.png" />
     <title>Tetris Settings</title>
 
     <link rel="stylesheet" href="./src/settings.scss">
@@ -26,9 +27,19 @@
             <br>
 
             <button id="reset"><i18n>settings.reset</i18n></button>
+
+            <br>
+
+            <p><i18n>settings.download</i18n></p>
+            <div>
+                <button id="download"><i18n>settings.download.save</i18n></button>
+                <button id="load"><label for="import"><i18n>settings.download.load</i18n></label></button>
+                <input type="file" id="import" style="display: none;">
+                <button id="resetG"><i18n>settings.download.reset</i18n></button>
+            </div>
         </div>
     </main>
 
-    <script type="module" src="./src/SettingsPage.ts"></script>
+    <script type="module" src="./src/settings.ts"></script>
 </body>
 </html>

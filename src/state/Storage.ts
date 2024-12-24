@@ -2,8 +2,8 @@ import { instanceToPlain } from "class-transformer";
 import { Difficulty, SavedSettings } from "./Settings";
 import { SavedState, State } from "./State";
 import crypto from 'crypto-js';
-import { ShapeRegistry } from "./Shape";
-import { ShapeRotation } from "./renderer/ShapeRenderer";
+import { ShapeRegistry } from "../shape/Shape";
+import { ShapeRotation } from "../renderer/ShapeRenderer";
 
 export class GameStorage {
     public static SECRET_KEY = "bmlndWVsaXRvIGlzIGJhZCBhdCBjYWxjdWx1cw==";
