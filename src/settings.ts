@@ -78,7 +78,7 @@ document.getElementById("import")?.addEventListener('change', async e => {
 
         GameStorage.save(s);
 
-        window.location.href = '../';
+        window.history.back();
     } catch (err) {
         alert(Language.translate("settings.download.error"));
     }
@@ -86,5 +86,5 @@ document.getElementById("import")?.addEventListener('change', async e => {
 
 document.getElementById("resetG")?.addEventListener('click', () => {
     GameStorage.save(GameStorage.createNewSave());
-    window.location.href = '../';
+    window.history.back();
 });
