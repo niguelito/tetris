@@ -1,6 +1,14 @@
 import 'string-format-ts';
+import ar_sa from '../lang/ar_sa.ts';
+import de_de from '../lang/de_de.ts';
 import en_us from "../lang/en_us.ts";
 import es_es from '../lang/es_es.ts';
+import fr_fr from '../lang/fr_fr.ts';
+import hi_in from '../lang/hi_in.ts';
+import it_it from '../lang/it_it.ts';
+import ja_jp from '../lang/ja_jp.ts';
+import ru_ru from '../lang/ru_ru.ts';
+import zh_cn from '../lang/zh_cn.ts';
 
 export class Difficulty {
     public static EASY = 0;
@@ -44,8 +52,16 @@ export interface LangLocalization {
 
 export class Language {
     public static allLanguages: LangLocalization[] = [
+        new ar_sa(),
+        new de_de(),
         new en_us(),
-        new es_es()
+        new es_es(),
+        new fr_fr(),
+        new hi_in(),
+        new it_it(),
+        new ja_jp(),
+        new ru_ru(),
+        new zh_cn()
     ];
 
     private static defaultTranslation = this.allLanguages[0];
