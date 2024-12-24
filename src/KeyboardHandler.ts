@@ -19,7 +19,6 @@ export default class KeyboardHandler {
 
     static keyUp(e: KeyboardEvent) {
         if (e.repeat) return;
-        e.preventDefault();
         var k = e.key;
 
         this.bindings.forEach(b => {
@@ -31,7 +30,6 @@ export default class KeyboardHandler {
 
     static keyDown(e: KeyboardEvent) {
         if (e.repeat) return;
-        e.preventDefault();
         var k = e.key;
 
         this.bindings.forEach(b => {
