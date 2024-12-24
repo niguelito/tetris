@@ -6,9 +6,9 @@ import GameRenderer from "./renderer/GameRenderer.ts";
 import GuiGraphics from "./renderer/GuiGraphics.ts";
 
 export class Game {
-    public static get arenaWidth() { return Settings.weightedDifficulty(10, 10, 15, 15, 15) };
-    public static get arenaHeight() { return Settings.weightedDifficulty(18, 18, 27, 27, 27) };
-    public static get deathHeight() { return Settings.weightedDifficulty(15, 15, 24, 24, 24) };
+    public static get arenaWidth() { return Settings.weightedDifficulty(10, 10, 12, 15, 15) };
+    public static get arenaHeight() { return Settings.weightedDifficulty(18, 18, 22, 27, 27) };
+    public static get deathHeight() { return Settings.weightedDifficulty(15, 15, 20, 24, 24) };
     public static screenWidth = 675;
     public static screenHeight = 1215;
 
