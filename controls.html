@@ -62,8 +62,8 @@
     </main>
 
     <script type="module" lang="ts">
-        import { Difficulty, Language, Settings } from "./src/Settings";
-        import { GameStorage } from "./src/Storage";
+        import { Difficulty, Language, Settings } from "./src/state/Settings";
+        import { GameStorage } from "./src/state/Storage";
 
         var state = GameStorage.loadSettings();
         Settings.init(state);
