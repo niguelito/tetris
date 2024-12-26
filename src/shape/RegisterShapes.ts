@@ -437,5 +437,21 @@ export default function registerShapes() {
         color: Color.hex(0x423a4a),
         minDiff: Difficulty.IMPOSSIBLE
     });
-    
+
+    ShapeRegistry.register({
+        name: "Potato Chip",
+        credit: "Duncan",
+        shape: [
+            [0, 0, 0, 1, 1, 0, 0],
+            [0, 0, 1, 1, 1, 1, 0],
+            [0, 0, 1, 1, 1, 1, 0],
+            [0, 0, 1, 1, 1, 1, 0],
+            [0, 0, 0, 1, 1, 1, 0],
+            [0, 0, 0, 1, 1, 0, 0],
+            [0, 0, 0, 1, 0, 0, 0]
+        ],
+        weight: ShapeWeights.UNCOMMON,
+        color: Color.hex(0xf7d65c),
+        minDiff: Difficulty.HARD
+    });
 }
