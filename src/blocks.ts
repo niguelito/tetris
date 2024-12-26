@@ -5,6 +5,7 @@ import { Language, Settings } from './state/Settings.ts';
 import { ShapeRegistry } from './shape/Shape.ts';
 import { GameStorage } from "./state/Storage.ts";
 
+(async function() {
 var state = GameStorage.loadSettings();
 await Settings.init(state);
 
@@ -43,3 +44,5 @@ ShapeRegistry.getShapes().forEach((shape) => {
 });
 
 Language.updateTexts();
+
+})();

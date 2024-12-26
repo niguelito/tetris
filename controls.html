@@ -61,14 +61,16 @@
         </div>
     </main>
 
-    <script type="module" text="ts" async>
+    <script type="module" text="ts">
         import { Difficulty, Language, Settings } from "./src/state/Settings";
         import { GameStorage } from "./src/state/Storage";
 
-        var state = GameStorage.loadSettings();
-        await Settings.init(state);
+        (async function() {
+            var state = GameStorage.loadSettings();
+            await Settings.init(state);
 
-        Language.updateTexts();
+            Language.updateTexts();
+        });
     </script>
 </body>
 

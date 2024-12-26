@@ -1,6 +1,8 @@
 import { Difficulty, Language, Settings } from "./state/Settings";
 import { GameStorage } from "./state/Storage";
 
+(async function() {
+
 var state = GameStorage.loadSettings();
 await Settings.init(state);
 
@@ -96,3 +98,5 @@ document.getElementById("resetG")?.addEventListener('click', () => {
     GameStorage.save(GameStorage.createNewSave());
     document.location.href = './';
 });
+
+})();
