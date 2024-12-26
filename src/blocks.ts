@@ -6,7 +6,7 @@ import { ShapeRegistry } from './shape/Shape.ts';
 import { GameStorage } from "./state/Storage.ts";
 
 var state = GameStorage.loadSettings();
-Settings.init(state);
+await Settings.init(state);
 
 Language.updateTexts();
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html text="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,33 +13,39 @@
         <button id="back" onclick="document.location.href = './'">&times;</button>
 
         <div id="settings">
-            <h1><i18n>settings</i18n></h1>
+            <h1><text>settings</text></h1>
 
 
-            <p><i18n>settings.language</i18n></p>
+            <p><text>settings.language</text></p>
             <select id="language"></select>
 
             <br>
 
-            <p id="diff"><i18n>settings.difficulty</i18n></p>
+            <p id="diff"><text>settings.difficulty</text></p>
             <select id="difficulty"></select>
 
             <br>
 
-            <button id="reset"><i18n>settings.reset</i18n></button>
+            <p><text>settings.collisionPath</text></p>
+            <select id="collisionPath">
+                <option value="true" translate>yes</option>
+                <option value="false" translate>no</option>
+            </select>
+
+            <button id="reset"><text>settings.reset</text></button>
 
             <br>
 
-            <p><i18n>settings.download</i18n></p>
+            <p><text>settings.download</text></p>
             <div>
-                <button id="download"><i18n>settings.download.save</i18n></button>
-                <button id="load"><label for="import"><i18n>settings.download.load</i18n></label></button>
+                <button id="download"><text>settings.download.save</text></button>
+                <button id="load"><label for="import"><text>settings.download.load</text></label></button>
                 <input type="file" id="import" style="display: none;">
-                <button id="resetG"><i18n>settings.download.reset</i18n></button>
+                <button id="resetG"><text>settings.download.reset</text></button>
             </div>
         </div>
     </main>
 
-    <script type="module" src="./src/settings.ts"></script>
+    <script type="module" src="./src/settings.ts" async></script>
 </body>
 </html>

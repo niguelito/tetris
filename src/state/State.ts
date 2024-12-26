@@ -99,7 +99,7 @@ export class State {
         return topRows.some((row) => row.some((cell) => cell !== null));
     }
 
-    public static collides(): boolean {
+    public static collides(dy = 0): boolean {
         var shape = ShapeRegistry.getShape(this.currentPiece);
         var shapeDefinition;
         switch (this.pieceRot) {
@@ -113,11 +113,11 @@ export class State {
         var height = shapeDefinition.length;
 
         for (let i = 0; i < height; i++) {
-            if (this.pieceY + i < 0) continue;
+            if (this.pieceY + dy + i < 0) continue;
 
             for (let j = 0; j < width; j++) {
                 if (shapeDefinition[i][j] > 0) {
-                    var y = this.pieceY + i + 1;
+                    var y = this.pieceY + dy + i + 1;
 
                     if (y == Game.arenaHeight) {
                         return true;

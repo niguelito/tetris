@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html text="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,12 +12,12 @@
     <main>
         <button id="back" onclick="document.location.href = './'">&times;</button>
 
-        <h1><i18n>blocks</i18n></h1>
-        <p><i18n>blocks.description</i18n></p>
+        <h1><text>blocks</text></h1>
+        <p><text>blocks.description</text></p>
 
         <div id="blocks"></div>
     </main>
 
-    <script type="module" src="./src/blocks.ts"></script>
+    <script type="module" src="./src/blocks.ts" async></script>
 </body>
 </html>

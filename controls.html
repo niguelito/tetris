@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html text="en">
 
 <head>
     <meta charset="UTF-8">
@@ -16,10 +16,10 @@
 
         <div id="controls">
             <div class="row">
-                <h1><i18n>controls</i18n></h1>
+                <h1><text>controls</text></h1>
             </div>
 
-            <p>↻ <i18n>controls.rotate</i18n></p>
+            <p>↻ <text>controls.rotate</text></p>
 
             <div class="row">
                 <kbd>↑</kbd>
@@ -27,7 +27,7 @@
                 <kbd>W</kbd>
             </div>
 
-            <p>← <i18n>controls.leftright</i18n> →</p>
+            <p>← <text>controls.leftright</text> →</p>
 
             <div class="row">
                 <kbd>←</kbd>
@@ -37,7 +37,7 @@
                 <kbd>D</kbd>
             </div>
 
-            <p>↓ <i18n>controls.down</i18n> ↓</p>
+            <p>↓ <text>controls.down</text> ↓</p>
 
             <div class="row">
                 <kbd>↓</kbd>
@@ -45,11 +45,11 @@
                 <kbd>S</kbd>
             </div>
 
-            <p>&dArr; <i18n>controls.drop</i18n> &dArr;</p>
+            <p>&dArr; <text>controls.drop</text> &dArr;</p>
 
             <kbd class="space">Space</kbd>
 
-            <p>&#x23F8; <i18n>controls.pauseplay</i18n> &#9658;</p>
+            <p>&#x23F8; <text>controls.pauseplay</text> &#9658;</p>
             
             <div class="row">
                 <kbd>Esc</kbd>
@@ -61,14 +61,14 @@
         </div>
     </main>
 
-    <script type="module" lang="ts">
-        import { Difficulty, Language, Settings } from "./src/state/Settings";
+    <script type="module" text="ts" async>
+        import { Difficulty, textuage, Settings } from "./src/state/Settings";
         import { GameStorage } from "./src/state/Storage";
 
         var state = GameStorage.loadSettings();
-        Settings.init(state);
+        await Settings.init(state);
 
-        Language.updateTexts();
+        textuage.updateTexts();
     </script>
 </body>
 

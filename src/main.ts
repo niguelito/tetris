@@ -6,47 +6,49 @@ import { ShapeRegistry } from "./shape/Shape";
 import { State } from "./state/State";
 import { GameStorage } from "./state/Storage";
 
-var canvas = document.getElementById('canvas');
+(async function() {
+    var canvas = document.getElementById('canvas');
 
-var state = GameStorage.load();
-var settings = GameStorage.loadSettings();
-State.init(state);
-Settings.init(settings);
+    var state = GameStorage.load();
+    var settings = GameStorage.loadSettings();
+    State.init(state);
+    await Settings.init(settings);
 
-registerShapes();
+    registerShapes();
 
-ShapeRegistry.closeRegistry();
+    ShapeRegistry.closeRegistry();
 
-KeyboardHandler.init();
+    KeyboardHandler.init();
 
-window.requestAnimationFrame((d) => Game.render(d, canvas as HTMLCanvasElement));
+    window.requestAnimationFrame((d) => Game.render(d, canvas as HTMLCanvasElement));
 
-if (State.gameOver()) {
-    State.restart();
-}
+    if (State.gameOver()) {
+        State.restart();
+    }
 
-Game.tick();
-Game.move();
-Game.dropI();
-Game.save();
+    Game.tick();
+    Game.move();
+    Game.dropI();
+    Game.save();
 
-var rotate = ['w', 'ArrowUp'];
-var left = ['a', 'ArrowLeft'];
-var drop = ['s', 'ArrowDown'];
-var right = ['d', 'ArrowRight'];
-var hardDrop = [' ', 'x'];
-var pause = ['p', 'Escape', 'Tab'];
+    var rotate = ['w', 'ArrowUp'];
+    var left = ['a', 'ArrowLeft'];
+    var drop = ['s', 'ArrowDown'];
+    var right = ['d', 'ArrowRight'];
+    var hardDrop = [' ', 'x'];
+    var pause = ['p', 'Escape', 'Tab'];
 
-KeyboardHandler.bind(rotate, Game.rotate);
-KeyboardHandler.bind(left, Game.left);
-KeyboardHandler.bind(drop, Game.drop);
-KeyboardHandler.bind(right, Game.right);
-KeyboardHandler.bind(hardDrop, Game.hardDrop);
-KeyboardHandler.bind(pause, Game.pause);
+    KeyboardHandler.bind(rotate, Game.rotate);
+    KeyboardHandler.bind(left, Game.left);
+    KeyboardHandler.bind(drop, Game.drop);
+    KeyboardHandler.bind(right, Game.right);
+    KeyboardHandler.bind(hardDrop, Game.hardDrop);
+    KeyboardHandler.bind(pause, Game.pause);
 
-document.getElementById("pauseplay")?.addEventListener('click', () => Game.pause(true));
-document.getElementById("restart")?.addEventListener('click', () => { State.restart(); window.location.reload(); });
-document.getElementById("download")?.addEventListener('click', () => Game.download());
+    document.getElementById("pauseplay")?.addEventListener('click', () => Game.pause(true));
+    document.getElementById("restart")?.addEventListener('click', () => { State.restart(); window.location.reload(); });
+    document.getElementById("download")?.addEventListener('click', () => Game.download());
 
-// save when page closes
-window.addEventListener('beforeunload', () => Game.save());
+    // save when page closes
+    window.addEventListener('beforeunload', () => Game.save());
+})();

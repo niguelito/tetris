@@ -7,12 +7,7 @@ import GuiGraphics from "./GuiGraphics";
 import { ShapeRenderer } from "./ShapeRenderer";
 
 export default class GameRenderer {
-    public static deathLineColor = Color.RED;
-    public static deathLineSize = 2 / 45;
-
     public static render(graphics: GuiGraphics) {
-        graphics.drawRect(Color.BLACK, 0, 0, Game.screenWidth, Game.screenHeight, false);
-        
         ShapeRenderer.renderArena(graphics);
 
         if (State.currentPiece && !State.gameOver()) {
@@ -20,6 +15,12 @@ export default class GameRenderer {
             var x = State.pieceX;
             var y = State.pieceY;
             var rot = State.pieceRot;
+
+            if (Settings.showCollisionPath) {
+                let dy = 0;
+                while (!State.collides(dy)) dy++;
+                ShapeRenderer.renderShape(graphics, shape, x, y + dy, rot, Color.hex(0x121212));
+            }
 
             if (!State.collides()) ShapeRenderer.renderShape(graphics, shape, x, y, rot);
             else ShapeRenderer.renderShape(graphics, shape, x, y, rot, shape.color.brighter(-50));
@@ -30,9 +31,13 @@ export default class GameRenderer {
     }
 
     static renderDeathLine(graphics: GuiGraphics) {
+        var deathLineColor = Color.RED;
+        var deathLineSize = 3;
+
         var translatedY = Game.arenaHeight - Game.deathHeight;
 
-        graphics.drawRect(this.deathLineColor, 0, translatedY, Game.arenaWidth, this.deathLineSize);
+        graphics.drawLine(deathLineColor, deathLineSize, 0, translatedY, Game.arenaWidth, translatedY);
+
     }
 
     static renderScore(graphics: GuiGraphics) {

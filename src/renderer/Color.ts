@@ -41,10 +41,10 @@ export default class Color {
         return new Color(red, green, blue, alpha);
     }
 
-    private red: number;
-    private green: number;
-    private blue: number;
-    private alpha: number;
+    public red: number;
+    public green: number;
+    public blue: number;
+    public alpha: number;
 
     private constructor(red: number, green: number, blue: number, alpha: number) {
         this.red = red;
@@ -67,6 +67,15 @@ export default class Color {
             Math.min(255, this.green + amount),
             Math.min(255, this.blue + amount),
             this.alpha
+        );
+    }
+
+    public translucent(amount: number) {
+        return new Color(
+            this.red,
+            this.green,
+            this.blue,
+            amount
         );
     }
 }

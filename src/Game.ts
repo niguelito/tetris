@@ -4,6 +4,7 @@ import { State } from "./state/State.ts";
 import { GameStorage } from "./state/Storage.ts";
 import GameRenderer from "./renderer/GameRenderer.ts";
 import GuiGraphics from "./renderer/GuiGraphics.ts";
+import Color from "./renderer/Color.ts";
 
 export class Game {
     public static get arenaWidth() { return Settings.weightedDifficulty(10, 10, 12, 15, 15) };
@@ -37,6 +38,8 @@ export class Game {
 
     public static async render(delta: number, canvas: HTMLCanvasElement) {
         var graphics = new GuiGraphics(canvas.getContext("2d") as CanvasRenderingContext2D, delta);
+
+        graphics.drawRect(Color.BLACK, 0, 0, Game.screenWidth, Game.screenHeight, false);
 
         GameRenderer.render(graphics);
 

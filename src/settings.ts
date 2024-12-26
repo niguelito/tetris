@@ -2,7 +2,7 @@ import { Difficulty, Language, Settings } from "./state/Settings";
 import { GameStorage } from "./state/Storage";
 
 var state = GameStorage.loadSettings();
-Settings.init(state);
+await Settings.init(state);
 
 Language.updateTexts();
 
@@ -16,10 +16,10 @@ Language.updateTexts();
         lang?.appendChild(option);
     });
 
-    lang.value = Language.selectedTranslation.localization;
+    lang.value = Language.selectedTranslation.data.localization;
 
-    lang.onchange = () => {
-        Language.update(lang.value);
+    lang.onchange = async () => {
+        await Language.update(lang.value);
         GameStorage.save(Settings.export());
         window.location.reload();
     };
@@ -47,6 +47,14 @@ Language.updateTexts();
         GameStorage.save(ngame);
     };
 }
+
+var collision = document.getElementById("collisionPath") as HTMLSelectElement;
+collision.value = Settings.showCollisionPath.toString();
+collision.onchange = (e) => {
+    Settings.showCollisionPath = (e.target as HTMLSelectElement).value == 'true';
+    GameStorage.save(Settings.export());
+    console.log(Settings.export());
+};
 
 document.getElementById("reset")?.addEventListener('click', () => {
     GameStorage.save(GameStorage.createNewSettings());
@@ -87,5 +95,4 @@ document.getElementById("import")?.addEventListener('change', async e => {
 document.getElementById("resetG")?.addEventListener('click', () => {
     GameStorage.save(GameStorage.createNewSave());
     document.location.href = './';
-    
 });

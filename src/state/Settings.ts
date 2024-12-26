@@ -1,14 +1,4 @@
 import 'string-format-ts';
-import ar_sa from '../lang/ar_sa.ts';
-import de_de from '../lang/de_de.ts';
-import en_us from "../lang/en_us.ts";
-import es_es from '../lang/es_es.ts';
-import fr_fr from '../lang/fr_fr.ts';
-import hi_in from '../lang/hi_in.ts';
-import it_it from '../lang/it_it.ts';
-import ja_jp from '../lang/ja_jp.ts';
-import ru_ru from '../lang/ru_ru.ts';
-import zh_cn from '../lang/zh_cn.ts';
 
 export class Difficulty {
     public static EASY = 0;
@@ -21,15 +11,18 @@ export class Difficulty {
 export interface SavedSettings {
     lang: string;
     difficulty: number;
+    showCollisionPath: boolean;
 }
 
 export class Settings {
     static currentDifficulty = Difficulty.NORMAL;
+    static showCollisionPath = true;
 
-    public static init(settings: SavedSettings) {
-        console.log(settings)
-        Language.update(settings.lang);
+    public static async init(settings: SavedSettings) {
+        console.log(settings.showCollisionPath)
         this.currentDifficulty = settings.difficulty - 1;
+        this.showCollisionPath = settings.showCollisionPath;
+        await Language.update(settings.lang);
     }
 
     public static weightedDifficulty(...nums: number[]) {
@@ -38,45 +31,62 @@ export class Settings {
 
     public static export(): SavedSettings {
         return {
-            lang: Language.selectedTranslation.localization,
-            difficulty: this.currentDifficulty + 1
+            lang: Language.selectedTranslation.data.localization,
+            difficulty: this.currentDifficulty + 1,
+            showCollisionPath: this.showCollisionPath
         }
     }
 }
 
 export interface LangLocalization {
-    name: string;
-    localization: string;
+    data: Localization;
     translations: Record<string, string>;
 }
 
+export interface Localization {
+    name: string;
+    localization: string;
+}
+
 export class Language {
-    public static allLanguages: LangLocalization[] = [
-        new ar_sa(),
-        new de_de(),
-        new en_us(),
-        new es_es(),
-        new fr_fr(),
-        new hi_in(),
-        new it_it(),
-        new ja_jp(),
-        new ru_ru(),
-        new zh_cn()
+    public static allLanguages: Localization[] = [
+        {name: 'اللغة العربية', localization: 'ar_sa'},
+        {name: 'Deutsch', localization: 'de_de'},
+        {name: "English", localization: "en_us"},
+        {name: "Español", localization: "es_es"},
+        {name: 'Français', localization: 'fr_fr'},
+        {name: 'हिंदी', localization: 'hi_in'},
+        {name: "Italiano", localization: "it_it"},
+        {name: '日本語', localization: 'ja_jp'},
+        {name: 'Русский', localization: 'ru_ru'},
+        {name: '简体中文', localization: 'zh_cn'}
     ];
 
-    private static defaultTranslation = this.allLanguages[0];
-    public static selectedTranslation = this.allLanguages[0];
+    private static defaultTranslation: LangLocalization;
+    public static selectedTranslation: LangLocalization;
 
-    public static update(lang: string): void {
+    static async load(localiz: Localization): Promise<LangLocalization> {
+        var path = `${import.meta.env.BASE_URL}/lang/${localiz.localization}.json`;
+        const data = await (await fetch(path)).json();
+        console.log(data)
+        return {
+            data: localiz,
+            translations: data
+        }
+    }
+
+    public static async update(lang: string) {
+        this.defaultTranslation = await this.load(this.allLanguages[2])
+
         const selected = this.allLanguages.filter((l) => l.localization == lang);
 
         if (selected.length == 0) {
             this.selectedTranslation = this.defaultTranslation;
-            console.warn('Language' + lang + ' not found, defaulting to ' + this.selectedTranslation.localization)
+            console.warn('Language' + lang + ' not found, defaulting to ' + this.selectedTranslation.data.localization)
         }
         else {
-            this.selectedTranslation = selected[0];
-            console.log('Loaded language: ' + this.selectedTranslation.localization)
+            this.selectedTranslation = await this.load(selected[0]);
+            console.log('Loaded language: ' + this.selectedTranslation.data.localization)
         };
     }
 
@@ -99,7 +109,7 @@ export class Language {
     }
 
     public static updateTexts() {
-        var texts = document.querySelectorAll("i18n");
+        var texts = document.querySelectorAll("text, [translate]");
         texts.forEach((text) => {
             var key = text.innerHTML;
             if (key) {

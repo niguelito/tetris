@@ -57,4 +57,14 @@ export default class GuiGraphics {
         this.context.textAlign = "center";
         this.context.fillText(text, rx, ry);
     }
+
+    public drawLine(color: Color, width: number, x1: number, y1: number, x2: number, y2: number, sized = true) {
+        this.context.strokeStyle = color.toString();
+        this.context.lineWidth = width;
+        this.context.beginPath();
+        this.context.moveTo(sized? this.resizePix(x1) : x1, sized? this.resizePix(y1) : y1);
+        this.context.lineTo(sized? this.resizePix(x2) : x2, sized? this.resizePix(y2) : y2);
+        this.context.closePath();
+        this.context.stroke();
+    }
 }

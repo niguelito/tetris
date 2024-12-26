@@ -31,7 +31,8 @@ export class GameStorage {
     public static createNewSettings(): SavedSettings {
         return {
             lang: "en",
-            difficulty: Difficulty.NORMAL
+            difficulty: Difficulty.NORMAL,
+            showCollisionPath: true
         };
     }
 
@@ -79,10 +80,12 @@ export class GameStorage {
             const r = (s);
             console.log(r);
             const a = JSON.parse(r);
+            console.log(a.showCollisionPath);
 
             return {
                 lang: a.lang ? a.lang : "en",
-                difficulty: a.difficulty ? a.difficulty : Difficulty.NORMAL
+                difficulty: a.difficulty ? a.difficulty : Difficulty.NORMAL,
+                showCollisionPath: a.showCollisionPath != undefined ? a.showCollisionPath : true
             };
         } catch (err) {
             console.error(err);
