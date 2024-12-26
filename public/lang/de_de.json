@@ -1,6 +1,7 @@
 {
-    "highScore": "Höchste Punktzahl: {0}",
-    "currentDifficulty": "Schwierigkeitsgrad: {0}",
+    "score": "Punktzahl",
+    "highScore": "Höchste Punktzahl",
+    "currentDifficulty": "Schwierigkeitsgrad",
 
     "yes": "Ja",
     "no": "Nein",
@@ -21,6 +22,7 @@
     "controls.leftright": "Links/Rechts",
     "controls.down": "Nach unten",
     "controls.drop": "Schnell fallen lassen",
+    "controls.stash": "Stück verstecken",
     "controls.pauseplay": "Spiel pausieren/fortsetzen",
 
     "settings": "Einstellungen",

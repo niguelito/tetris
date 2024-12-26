@@ -1,6 +1,7 @@
 {
-    "highScore": "Рекорд: {0}",
-    "currentDifficulty": "Сложность: {0}",
+    "score": "Очки",
+    "highScore": "Рекорд",
+    "currentDifficulty": "Сложность",
 
     "yes": "Да",
     "no": "Нет",
@@ -21,6 +22,7 @@
     "controls.leftright": "Влево/Вправо",
     "controls.down": "Опустить",
     "controls.drop": "Быстрый спуск",
+    "controls.stash": "Спрятать фигуру",
     "controls.pauseplay": "Пауза/Продолжить",
 
     "settings": "Настройки",

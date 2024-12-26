@@ -1,6 +1,7 @@
 {
-    "highScore": "उच्च स्कोर: {0}",
-    "currentDifficulty": "कठिनाई: {0}",
+    "score": "स्कोर",
+    "highScore": "उच्च स्कोर",
+    "currentDifficulty": "कठिनाई",
 
     "yes": "हाँ",
     "no": "नहीं",
@@ -21,6 +22,7 @@
     "controls.leftright": "बाएँ/दाएँ",
     "controls.down": "नीचे गिराएँ",
     "controls.drop": "कठिन गिरावट",
+    "controls.stash": "छिपाएँ",
     "controls.pauseplay": "खेल रोकें/फिर से शुरू करें",
 
     "settings": "सेटिंग्स",

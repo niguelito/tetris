@@ -1,6 +1,7 @@
 {
-    "highScore": "最高分: {0}",
-    "currentDifficulty": "难度: {0}",
+    "score": "分数",
+    "highScore": "最高分",
+    "currentDifficulty": "难度",
 
     "yes": "是",
     "no": "否",
@@ -21,6 +22,7 @@
     "controls.leftright": "左/右",
     "controls.down": "下落",
     "controls.drop": "快速下落",
+    "controls.stash": "暂存",
     "controls.pauseplay": "暂停/继续",
 
     "settings": "设置",

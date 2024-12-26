@@ -1,6 +1,7 @@
 {
-    "highScore": "ハイスコア: {0}",
-    "currentDifficulty": "難易度: {0}",
+    "score": "スコア",
+    "highScore": "ハイスコア",
+    "currentDifficulty": "難易度",
 
     "yes": "はい",
     "no": "いいえ",
@@ -21,6 +22,7 @@
     "controls.leftright": "左/右",
     "controls.down": "下に移動",
     "controls.drop": "即落下",
+    "controls.stash": "隠す",
     "controls.pauseplay": "一時停止/再開",
 
     "settings": "設定",

@@ -1,6 +1,7 @@
 {
-    "highScore": "Meilleur score : {0}",
-    "currentDifficulty": "Difficulté : {0}",
+    "score": "Score",
+    "highScore": "Meilleur score",
+    "currentDifficulty": "Difficulté",
 
     "yes": "Oui",
     "no": "Non",
@@ -21,6 +22,7 @@
     "controls.leftright": "Gauche/Droite",
     "controls.down": "Descendre",
     "controls.drop": "Chute rapide",
+    "controls.stash": "Cacher la pièce",
     "controls.pauseplay": "Pause/Reprendre le jeu",
 
     "settings": "Paramètres",

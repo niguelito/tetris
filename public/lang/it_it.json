@@ -1,6 +1,7 @@
 {
-    "highScore": "Punteggio Massimo: {0}",
-    "currentDifficulty": "Difficoltà: {0}",
+    "score": "Punteggio",
+    "highScore": "Punteggio Massimo",
+    "currentDifficulty": "Difficoltà",
     
     "yes": "Sì",
     "no": "No",
@@ -21,6 +22,7 @@
     "controls.leftright": "Sinistra/Destra",
     "controls.down": "Scendi",
     "controls.drop": "Scendi Velocemente",
+    "controls.stash": "Nascondi Pezzo",
     "controls.pauseplay": "Pausa/Riprendi",
 
     "settings": "Impostazioni",

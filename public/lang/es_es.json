@@ -1,6 +1,7 @@
 {
-    "highScore": "Puntuación más alta: {0}",
-    "currentDifficulty": "Dificultad: {0}",
+    "score": "Puntuación",
+    "highScore": "Puntuación más alta",
+    "currentDifficulty": "Dificultad",
 
     "yes": "Sí",
     "no": "No",
@@ -21,6 +22,7 @@
     "controls.leftright": "Izquierda/Derecha",
     "controls.down": "Bajar",
     "controls.drop": "Caída rápida",
+    "controls.stash": "Ocultar pieza",
     "controls.pauseplay": "Pausar/Reanudar juego",
 
     "settings": "Configuraciones",

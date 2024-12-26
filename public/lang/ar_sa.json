@@ -1,6 +1,7 @@
 {
-    "highScore": "أعلى نتيجة: {0}",
-    "currentDifficulty": "الصعوبة: {0}",
+    "score": "النتيجة",
+    "highScore": "أعلى",
+    "currentDifficulty": "الصعوبة",
 
     "yes": "نعم",
     "no": "لا",
@@ -21,6 +22,7 @@
     "controls.leftright": "يسار/يمين",
     "controls.down": "إنزال",
     "controls.drop": "إسقاط سريع",
+    "controls.stash": "تخزين القطعة",
     "controls.pauseplay": "إيقاف/استئناف اللعبة",
 
     "settings": "الإعدادات",
