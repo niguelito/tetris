@@ -19,6 +19,9 @@ export class GameStorage {
             score: 0,
             highScores: [0, 0, 0, 0, 0],
             arenaState: State.emptyArena(),
+            pieceQueue: [],
+            hasStashed: false,
+            stashedPiece: null,
             currentPiece: {
                 piece: ShapeRegistry.selectShape(),
                 x: 0,
@@ -60,7 +63,10 @@ export class GameStorage {
             return {
                 score: this.resolveOrZero(a.score),
                 highScores: a.highScores ? a.highScores : [0, 0, 0, 0, 0],
-                arenaState: a.arenaState,
+                arenaState: a.arenaState ? a.arenaState : State.emptyArena(),
+                pieceQueue: a.pieceQueue ? a.pieceQueue : [],
+                stashedPiece: a.stashedPiece ? a.stashedPiece : null,
+                hasStashed: a.hasStashed != undefined ? a.hasStashed : false,
                 currentPiece: {
                     piece: this.resolveOrZero(a.currentPiece.piece),
                     x: this.resolveOrZero(a.currentPiece.x),

@@ -1,6 +1,7 @@
 {
-    "highScore": "High Score: {0}",
-    "currentDifficulty": "Difficulty: {0}",
+    "score": "Score",
+    "highScore": "High Score",
+    "currentDifficulty": "Difficulty",
 
     "yes": "Yes",
     "no": "No",
@@ -21,6 +22,7 @@
     "controls.leftright": "Left/Right",
     "controls.down": "Drop Down",
     "controls.drop": "Hard Drop",
+    "controls.stash": "Stash Piece",
     "controls.pauseplay": "Pause/Resume Game",
 
     "settings": "Settings",

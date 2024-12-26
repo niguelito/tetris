@@ -8,8 +8,11 @@ export type ArenaState = (number | null)[][];
 export interface SavedState {
     score: number;
     highScores: number[];
+    pieceQueue: number[];
     arenaState: ArenaState;
     currentPiece: CurrentPiece;
+    stashedPiece: number | null;
+    hasStashed: boolean;
 }
 
 export interface CurrentPiece {
@@ -33,10 +36,19 @@ export class State {
 
     public static isPaused = false;
 
+    public static pieceQueue: number[] = [];
+    public static stashedPiece: number | null = null;
+    public static hasStashed = false;
+
+    private static scoreListener: (() => void) | null = null;
+
     public static init(state: SavedState) {
         this.score = state.score;
         this.highScores = state.highScores;
         this.arenaState = state.arenaState;
+        this.pieceQueue = state.pieceQueue;
+        this.stashedPiece = state.stashedPiece;
+        this.hasStashed = state.hasStashed;
         
         this.currentPiece = state.currentPiece.piece;
         this.pieceX = state.currentPiece.x;
@@ -44,17 +56,45 @@ export class State {
         this.pieceRot = state.currentPiece.rot;
     }
 
+    public static setScoreListener(listener: () => void) {
+        this.scoreListener = listener;
+    }
+
+    public static nextPiece(shape?: number) {
+        if (shape) {
+            this.currentPiece = shape;
+            this.centerPiece();
+            return;
+        }
+
+        if (this.pieceQueue.length == 0) {
+            for (let i = 0; i < 4; i++) this.pieceQueue.push(ShapeRegistry.selectShape());
+        }
+
+        this.currentPiece = this.pieceQueue.shift() as number;
+        this.centerPiece();
+
+        this.pieceQueue.push(ShapeRegistry.selectShape());
+
+        this.hasStashed = false;
+    }
+
+    static centerPiece() {
+        this.pieceX = Math.floor(Game.arenaWidth / 2 - ShapeRegistry.width(this.currentPiece) / 2);
+        this.pieceY = ShapeRegistry.height(this.currentPiece) * -1;
+        this.pieceRot = 0;
+    }
+
     public static awardPoints(amount: number) {
         this.score += amount;
         this.highScore = Math.max(this.score, this.highScore);
+
+        this.scoreListener?.();
     }
 
     public static emptyArena(): ArenaState {
         var arenaState = [];
 
-        // initialize matrix with nulls
-        // Game.arenaWidth is the width of the arena
-        // Game.arenaHeight is the height of the arena
         for (let i = 0; i < Game.arenaHeight; i++) {
             arenaState.push(new Array(Game.arenaWidth).fill(null));
         }
@@ -147,8 +187,6 @@ export class State {
         var height = shapeDefinition.length;
 
         for (let i = 0; i < height; i++) {
-            if (this.pieceY + i < 0) continue;
-
             for (let j = 0; j < width; j++) {
                 if (shapeDefinition[i][j] > 0) {
                     var x = this.pieceX + j + deltaX;
@@ -157,7 +195,7 @@ export class State {
                         return false;
                     }
 
-                    if (this.pieceY + i >= 0 && this.arenaState[this.pieceY + i][x] != null) {
+                    if (this.pieceY + i > 0 && (this.pieceY + i >= 0 && this.arenaState[this.pieceY + i][x] != null)) {
                         return false;
                     }
                 }
@@ -199,6 +237,8 @@ export class State {
     public static restart() {
         this.score = 0;
         this.arenaState = this.emptyArena();
+        this.pieceQueue = [];
+        this.stashedPiece = null;
 
         this.currentPiece = ShapeRegistry.selectShape();
         this.pieceX = Math.floor(Game.arenaWidth / 2 - ShapeRegistry.width(this.currentPiece) / 2);
@@ -211,6 +251,9 @@ export class State {
             score: this.score,
             highScores: this.highScores,
             arenaState: this.arenaState,
+            pieceQueue: this.pieceQueue,
+            stashedPiece: this.stashedPiece,
+            hasStashed: this.hasStashed,
             currentPiece: {
                 piece: this.currentPiece,
                 x: this.pieceX,

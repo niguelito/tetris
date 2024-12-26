@@ -1,5 +1,5 @@
 import { Game } from "../Game";
-import { Language, Settings } from "../state/Settings";
+import { Settings } from "../state/Settings";
 import { ShapeRegistry } from "../shape/Shape";
 import { State } from "../state/State";
 import Color from "./Color";
@@ -10,7 +10,7 @@ export default class GameRenderer {
     public static render(graphics: GuiGraphics) {
         ShapeRenderer.renderArena(graphics);
 
-        if (State.currentPiece && !State.gameOver()) {
+        if (State.currentPiece != undefined && !State.gameOver()) {
             var shape = ShapeRegistry.getShape(State.currentPiece);
             var x = State.pieceX;
             var y = State.pieceY;
@@ -27,7 +27,6 @@ export default class GameRenderer {
         }
 
         this.renderDeathLine(graphics);
-        this.renderScore(graphics);
     }
 
     static renderDeathLine(graphics: GuiGraphics) {
@@ -38,13 +37,5 @@ export default class GameRenderer {
 
         graphics.drawLine(deathLineColor, deathLineSize, 0, translatedY, Game.arenaWidth, translatedY);
 
-    }
-
-    static renderScore(graphics: GuiGraphics) {
-        var line = Game.arenaHeight - Game.deathHeight + 1;
-
-        graphics.drawStringCentered(`${State.score}`, Color.WHITE, 100, Game.arenaWidth / 2, line - 1.5);
-        graphics.drawStringCentered(Language.translation("highScore", State.highScore), Color.WHITE, 30, Game.arenaWidth / 2, line);
-        graphics.drawStringCentered(Language.translation("currentDifficulty", Language.translate("difficulty." + Settings.currentDifficulty)), Color.WHITE, 30, Game.arenaWidth / 2, line + 0.8);
     }
 }

@@ -5,8 +5,8 @@
     width: 100vw;
 }
 
-$canvas-width: 100vh * 0.56;
 $canvas-height: 100vh;
+$canvas-width: calc($canvas-height * (675 / 1215));
 
 html,
 body {
@@ -19,18 +19,159 @@ body {
 
     display: flex;
     justify-content: center;
+    flex-direction: row;
 
-    &,
+    overflow: hidden;
+
     canvas,
     main {
         width: $canvas-width;
         overflow: hidden;
         height: $canvas-height;
     }
-}
 
-* {
-    box-sizing: border-box;
+    $size: 10vw;
+
+    #pieceQueue {
+        padding: 20px;
+        width: $size;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 5%;
+
+        canvas {
+            width: $size;
+            height: $size;
+        }
+    }
+
+    #stash {
+        padding: 20px;
+        width: $size;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        canvas {
+            width: $size;
+            height: $size;
+        }
+
+        #scoreInfo {
+            text-align: center;
+
+            p#score {
+                font-size: 1.5em;
+                margin: 0;
+            }
+        }
+    }
+
+    #buttons {
+        z-index: 1;
+        $square: 30px;
+        width: 100vw;
+        position: fixed;
+    
+        & > button {
+            $padding: 6px;
+            $padding-active: 5px;
+            $margin: $square * 1.5;
+    
+            position: absolute;
+            top: $margin;
+            margin: 0;
+            padding: 0;
+            border: none;
+            cursor: pointer;
+    
+            background-color: transparent;
+    
+            border-radius: 4px;
+            padding: $padding;
+            outline: none;
+    
+            transition: all 0.04s ease;
+            transform: translate(-50%, -50%);
+    
+            max-width: $square + $padding * 2;
+            max-height: $square + $padding * 2;
+    
+            img {
+                position: relative;
+                width: $square;
+                height: $square;
+            }
+    
+            &#restart {
+                left: $margin;
+            }
+    
+            &#pauseplay {
+                right: $margin;
+                transform: translate(50%, -50%);
+            }
+    
+            &#controls {
+                left: $margin * 2;
+            }
+    
+            &#settings {
+                right: $margin * 2;
+                transform: translate(50%, -50%);
+            }
+    
+            &#blocks {
+                left: $margin * 3;
+            }
+    
+            &#back {
+                right: 50%;
+                transform: translate(50%, -50%);
+                font-size: 50px;
+                color: white;
+            }
+    
+            &#download {
+                right: $margin * 3;
+                transform: translate(50%, -50%);
+            }
+    
+            &:hover {
+                background-color: rgba(170, 170, 170, 0.35);
+            }
+    
+            &:active {
+                padding: $padding-active;
+            }
+        }
+    
+        &[data-paused='true'] {
+            & > button#pauseplay {
+                & > img.pause {
+                    display: none;
+                }
+    
+                & > img.play {
+                    display: block;
+                }
+            }
+        }
+    
+        &[data-paused='false'] {
+            & > button#pauseplay {
+                & > img.pause {
+                    display: block;
+                }
+    
+                & > img.play {
+                    display: none;
+                }
+            }
+        }
+    }
 }
 
 *[hidden] {
@@ -39,113 +180,11 @@ body {
 
 main {
     $canvas-margin: 3px;
-    $square: 30px;
-
+    
     position: relative;
     margin: $canvas-margin;
 
     background-color: black;
 
     user-select: none;
-
-    & > button {
-        $padding: 6px;
-        $padding-active: 5px;
-        $margin: $square * 1.5;
-
-        position: absolute;
-        top: $margin;
-        margin: 0;
-        padding: 0;
-        border: none;
-        cursor: pointer;
-
-        background-color: transparent;
-
-        border-radius: 4px;
-        padding: $padding;
-        outline: none;
-
-        transition: all 0.04s ease;
-        transform: translate(-50%, -50%);
-
-        max-width: $square + $padding * 2;
-        max-height: $square + $padding * 2;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        img {
-            position: relative;
-            width: $square;
-            height: $square;
-        }
-
-        &#restart {
-            left: $margin;
-        }
-
-        &#pauseplay {
-            right: $margin;
-            transform: translate(50%, -50%);
-        }
-
-        &#controls {
-            left: $margin * 2;
-        }
-
-        &#settings {
-            right: $margin * 2;
-            transform: translate(50%, -50%);
-        }
-
-        &#blocks {
-            left: $margin * 3;
-        }
-
-        &#back {
-            right: 50%;
-            transform: translate(50%, -50%);
-            font-size: 50px;
-            color: white;
-        }
-
-        &#download {
-            right: $margin * 3;
-            transform: translate(50%, -50%);
-        }
-
-        &:hover {
-            background-color: rgba(170, 170, 170, 0.35);
-        }
-
-        &:active {
-            padding: $padding-active;
-        }
-    }
-
-    &[data-paused='true'] {
-        & > button#pauseplay {
-            & > img.pause {
-                display: none;
-            }
-
-            & > img.play {
-                display: block;
-            }
-        }
-    }
-
-    &[data-paused='false'] {
-        & > button#pauseplay {
-            & > img.pause {
-                display: block;
-            }
-
-            & > img.play {
-                display: none;
-            }
-        }
-    }
 }

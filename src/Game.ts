@@ -4,7 +4,6 @@ import { State } from "./state/State.ts";
 import { GameStorage } from "./state/Storage.ts";
 import GameRenderer from "./renderer/GameRenderer.ts";
 import GuiGraphics from "./renderer/GuiGraphics.ts";
-import Color from "./renderer/Color.ts";
 
 export class Game {
     public static get arenaWidth() { return Settings.weightedDifficulty(10, 10, 12, 15, 15) };
@@ -37,10 +36,10 @@ export class Game {
     public static dropDelta: boolean = false;
 
     public static async render(delta: number, canvas: HTMLCanvasElement) {
-        var graphics = new GuiGraphics(canvas.getContext("2d") as CanvasRenderingContext2D, delta);
+        var ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+        var graphics = new GuiGraphics(ctx, delta);
 
-        graphics.drawRect(Color.BLACK, 0, 0, Game.screenWidth, Game.screenHeight, false);
-
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         GameRenderer.render(graphics);
 
         window.requestAnimationFrame((d) => Game.render(d, canvas));
@@ -66,16 +65,13 @@ export class Game {
             return;
         }
 
-        if (State.currentPiece) {
+        if (State.currentPiece != undefined) {
             if (State.collides()) {
                 if (Game.placeDelta) {
                     State.putShape(ShapeRegistry.getShape(State.currentPiece), State.pieceX, State.pieceY, State.pieceRot);
                     State.awardPoints(Game.landing);
 
-                    State.currentPiece = ShapeRegistry.selectShape();
-                    State.pieceX = Math.floor(Game.arenaWidth / 2 - ShapeRegistry.width(State.currentPiece) / 2);
-                    State.pieceY = ShapeRegistry.height(State.currentPiece) * -1;
-                    State.pieceRot = 0;
+                    console.log("b");
 
                     Game.placeDelta = false;
 
@@ -88,6 +84,8 @@ export class Game {
                             State.arenaState.unshift(new Array(Game.arenaWidth).fill(null));
                         });
                     }
+
+                    State.nextPiece();
                 } else {
                     Game.placeDelta = true;
                 }
@@ -95,10 +93,8 @@ export class Game {
                 State.pieceY++;
             }
         } else {
-            State.currentPiece = ShapeRegistry.selectShape();
-            State.pieceX = Math.floor(Game.arenaWidth / 2 - ShapeRegistry.width(State.currentPiece) / 2);
-            State.pieceY = ShapeRegistry.height(State.currentPiece) * -1;
-            State.pieceRot = 0;
+            console.log('a')
+            State.nextPiece();
         }
         
 
@@ -150,8 +146,6 @@ export class Game {
 
         if (State.gameOver()) {
             clearInterval(Game.dropTimeout);
-
-            State.awardPoints(Game.dropScore);
 
             return;
         }
@@ -237,6 +231,7 @@ export class Game {
                 State.pieceY++;
                 dy++;
             }
+            Game.placeDelta = true;
             Game.tick();
             State.awardPoints(Math.ceil(Game.hardDropScore * (dy / 3)));
         }
@@ -247,9 +242,23 @@ export class Game {
             State.isPaused = !State.isPaused;
         }
 
-        const mainElement = document.querySelector('main');
+        const mainElement = document.getElementById('buttons');
         if (mainElement) {
             mainElement.dataset.paused = State.isPaused ? 'true' : 'false';
+        }
+    }
+
+    public static stash(down: boolean) {
+        if (down && !State.hasStashed) {
+            if (State.stashedPiece == null) {
+                State.stashedPiece = State.currentPiece;
+                State.nextPiece();
+            } else {
+                let temp = State.stashedPiece;
+                State.stashedPiece = State.currentPiece;
+                State.hasStashed = true;
+                State.nextPiece(temp);
+            }
         }
     }
 

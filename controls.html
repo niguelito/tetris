@@ -11,9 +11,11 @@
 </head>
 
 <body>
-    <main>
+    <div id="buttons">
         <button id="back" onclick="document.location.href = './'">&times;</button>
-
+    </div>
+    
+    <main>
         <div id="controls">
             <div class="row">
                 <h1><text>controls</text></h1>
@@ -49,6 +51,14 @@
 
             <kbd class="space">Space</kbd>
 
+            <p><text>controls.stash</text></p>
+
+            <div class="row">
+                <kbd>Shift</kbd>
+                <div class="spacer"></div>
+                <kbd>E</kbd>
+            </div>
+
             <p>&#x23F8; <text>controls.pauseplay</text> &#9658;</p>
             
             <div class="row">
@@ -70,7 +80,7 @@
             await Settings.init(state);
 
             Language.updateTexts();
-        });
+        })();
     </script>
 </body>
 
