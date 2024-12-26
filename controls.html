@@ -62,13 +62,13 @@
     </main>
 
     <script type="module" text="ts" async>
-        import { Difficulty, textuage, Settings } from "./src/state/Settings";
+        import { Difficulty, Language, Settings } from "./src/state/Settings";
         import { GameStorage } from "./src/state/Storage";
 
         var state = GameStorage.loadSettings();
         await Settings.init(state);
 
-        textuage.updateTexts();
+        Language.updateTexts();
     </script>
 </body>
 
