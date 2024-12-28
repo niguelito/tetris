@@ -18,7 +18,7 @@ export class Game {
     public static get lineClear() { return Settings.weightedDifficulty(75, 200, 450, 800, 1500) };
 
     public static get scale() { return Game.screenHeight / Game.arenaHeight };
-    public static dropInterval = 350;
+    public static dropInterval = 430;
     public static dropKeyInterval = 44;
     public static lockDelay = 450;
     public static movementInterval = 76;

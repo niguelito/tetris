@@ -7,7 +7,6 @@ import { State } from "./state/State";
 import { GameStorage } from "./state/Storage";
 import GuiGraphics from "./renderer/GuiGraphics";
 import { ShapeRenderer } from "./renderer/ShapeRenderer";
-import Color from "./renderer/Color";
 
 (async function() {
     var canvas = document.getElementById('canvas');
@@ -35,7 +34,7 @@ import Color from "./renderer/Color";
                 ctx.clearRect(0, 0, c.width, c.height);
                         
                 var scale = c.width / shape.shape.length;
-                graphics.pushScale(Math.min(scale - scale % 2, 50));
+                graphics.pushScale(Math.max(scale - scale % 2, 45));
         
                 ShapeRenderer.renderShape(graphics, shape, 0, 0);
             } catch (e) {}
@@ -63,7 +62,7 @@ import Color from "./renderer/Color";
                 ctx.clearRect(0, 0, c.width, c.height);
                         
                 var scale = c.width / shape.shape.length;
-                graphics.pushScale(Math.min(scale - scale % 2, 50));
+                graphics.pushScale(Math.max(scale - scale % 2, 45));
         
                 ShapeRenderer.renderShape(graphics, shape, 0, 0);
             } catch (e) {}
@@ -71,25 +70,6 @@ import Color from "./renderer/Color";
 
         var s = document.getElementById("stashRenderer");
         window.requestAnimationFrame((d) => renderStashShape(s as HTMLCanvasElement, d));
-
-        function renderScore(c: HTMLCanvasElement, delta: number) {
-            try {
-                var ctx = c.getContext("2d") as CanvasRenderingContext2D;
-                ctx.clearRect(0, 0, c.width, c.height);
-                var graphics = new GuiGraphics(ctx, delta);
-
-                graphics.pushScale(1);
-
-                graphics.drawString(`${State.score}`, Color.WHITE, 20, 0, 0);
-                graphics.drawString(Language.translation("highScore", State.highScore), Color.WHITE, 10, 0, 30);
-                graphics.drawString(Language.translation("currentDifficulty", Language.translate("difficulty." + Settings.currentDifficulty)), Color.WHITE, 10, 0, 60);
-            } catch (e) {}
-
-            window.requestAnimationFrame((d) => renderScore(c, d));
-        }
-
-        var score = document.getElementById("scoreRenderer");
-        window.requestAnimationFrame((d) => renderScore(score as HTMLCanvasElement, d));
     });
 
     if (State.gameOver()) {

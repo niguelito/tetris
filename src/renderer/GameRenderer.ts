@@ -19,7 +19,7 @@ export default class GameRenderer {
             if (Settings.showCollisionPath) {
                 let dy = 0;
                 while (!State.collides(dy)) dy++;
-                ShapeRenderer.renderShape(graphics, shape, x, y + dy, rot, Color.hex(0x121212));
+                ShapeRenderer.renderShape(graphics, shape, x, y + dy, rot, Color.hex(0x272727));
             }
 
             if (!State.collides()) ShapeRenderer.renderShape(graphics, shape, x, y, rot);
