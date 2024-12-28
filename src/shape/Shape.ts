@@ -1,5 +1,5 @@
 import Color from "../renderer/Color";
-import { Difficulty, Settings } from "../state/Settings";
+import { Settings } from "../state/Settings";
 
 export type ShapeDefinition = number[][];
 
@@ -96,11 +96,6 @@ export class ShapeRegistry {
     public static closeRegistry() {
         this.registered.forEach((shape) => {
             if (Settings.currentDifficulty < shape.minDiff) return;
-
-            if (Settings.currentDifficulty == Difficulty.EASY) {
-                this.weighted.push(shape);
-                return;
-            }
             
             for (let i = 0; i < shape.weight; i++) {
                 this.weighted.push(shape);

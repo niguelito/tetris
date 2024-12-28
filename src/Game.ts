@@ -77,7 +77,7 @@ export class Game {
 
                     var lines = State.getLines();
                     if (lines.length > 0) {
-                        State.awardPoints(Math.ceil(Game.lineClear * Math.pow(2, lines.length - 1)));
+                        State.awardPoints(Math.ceil(Game.lineClear * Math.pow(4, lines.length - 1)));
 
                         lines.forEach(line => {
                             State.arenaState.splice(line, 1);
