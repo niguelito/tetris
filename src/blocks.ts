@@ -36,7 +36,7 @@ ShapeRegistry.getShapes().forEach((shape) => {
         var graphics = new GuiGraphics(canvas.getContext("2d") as CanvasRenderingContext2D, delta);
         
         var scale = canvas.width / shape.shape.length;
-        graphics.pushScale(Math.max(scale - scale % 2, 45));
+        graphics.pushScale(Math.min(scale - scale % 2, 45));
 
         ShapeRenderer.renderShape(graphics, shape, 0, 0);
     });

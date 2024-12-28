@@ -34,7 +34,7 @@ import { ShapeRenderer } from "./renderer/ShapeRenderer";
                 ctx.clearRect(0, 0, c.width, c.height);
                         
                 var scale = c.width / shape.shape.length;
-                graphics.pushScale(Math.max(scale - scale % 2, 45));
+                graphics.pushScale(Math.min(scale - scale % 2, 45));
         
                 ShapeRenderer.renderShape(graphics, shape, 0, 0);
             } catch (e) {}
@@ -62,7 +62,7 @@ import { ShapeRenderer } from "./renderer/ShapeRenderer";
                 ctx.clearRect(0, 0, c.width, c.height);
                         
                 var scale = c.width / shape.shape.length;
-                graphics.pushScale(Math.max(scale - scale % 2, 45));
+                graphics.pushScale(Math.min(scale - scale % 2, 45));
         
                 ShapeRenderer.renderShape(graphics, shape, 0, 0);
             } catch (e) {}
