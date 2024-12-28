@@ -68,7 +68,14 @@ export class State {
         }
 
         if (this.pieceQueue.length == 0) {
-            for (let i = 0; i < 4; i++) this.pieceQueue.push(ShapeRegistry.selectShape());
+            for (let i = 0; i < 4; i++) {
+                let piece = ShapeRegistry.selectShape();
+
+                // makes chances of dupe pieces less
+                if (i > 0 && piece == this.pieceQueue[i - 1]) piece = ShapeRegistry.selectShape();
+
+                this.pieceQueue.push(piece);
+            }
         }
 
         this.currentPiece = this.pieceQueue.shift() as number;
