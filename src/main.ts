@@ -95,7 +95,7 @@ import { ShapeRenderer } from "./renderer/ShapeRenderer";
     var drop = ['s', 'ArrowDown'];
     var right = ['d', 'ArrowRight'];
     var hardDrop = [' ', 'x'];
-    var stash = ['Shift', 'e']
+    var stash = ['Shift', 'e', 'i']
     var pause = ['p', 'Escape', 'Tab'];
 
     KeyboardHandler.bind(rotate, Game.rotate);
