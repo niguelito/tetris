@@ -42,11 +42,6 @@ Language.updateTexts();
     difficulty.onchange = () => {
         Settings.currentDifficulty = parseInt(difficulty.value);
         GameStorage.save(Settings.export());
-
-        var game = GameStorage.load();
-        var ngame = GameStorage.createNewSave();
-        ngame.highScores = game.highScores;
-        GameStorage.save(ngame);
     };
 }
 

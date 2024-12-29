@@ -1,6 +1,6 @@
 import { instanceToPlain } from "class-transformer";
 import { Difficulty, SavedSettings } from "./Settings";
-import { SavedState, State } from "./State";
+import { SavedState } from "./State";
 import crypto from 'crypto-js';
 import { ShapeRegistry } from "../shape/Shape";
 import { ShapeRotation } from "../renderer/ShapeRenderer";
@@ -16,9 +16,9 @@ export class GameStorage {
 
     public static createNewSave(): SavedState {
         return {
-            score: 0,
+            scores: [0, 0, 0, 0, 0],
             highScores: [0, 0, 0, 0, 0],
-            arenaState: State.emptyArena(),
+            arenaStates: [[], [], [], [], []],
             pieceQueue: [],
             hasStashed: false,
             stashedPiece: null,
@@ -61,9 +61,9 @@ export class GameStorage {
             const a = JSON.parse(r);
 
             return {
-                score: this.resolveOrZero(a.score),
+                scores: a.scores ? a.scores : [0, 0, 0, 0, 0],
                 highScores: a.highScores ? a.highScores : [0, 0, 0, 0, 0],
-                arenaState: a.arenaState ? a.arenaState : State.emptyArena(),
+                arenaStates: a.arenaStates ? a.arenaStates : [[], [], [], [], []],
                 pieceQueue: a.pieceQueue ? a.pieceQueue : [],
                 stashedPiece: a.stashedPiece ? a.stashedPiece : null,
                 hasStashed: a.hasStashed != undefined ? a.hasStashed : false,

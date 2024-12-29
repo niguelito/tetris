@@ -13,8 +13,8 @@ import { ShapeRenderer } from "./renderer/ShapeRenderer";
 
     var state = GameStorage.load();
     var settings = GameStorage.loadSettings();
-    State.init(state);
     await Settings.init(settings);
+    State.init(state);
 
     registerShapes();
 
@@ -51,8 +51,6 @@ import { ShapeRenderer } from "./renderer/ShapeRenderer";
             window.requestAnimationFrame((d) => renderStashShape(c, d));
             
             try {
-                console.log("rendered");
-
                 if (State.stashedPiece == null) return;
 
                 var shape = ShapeRegistry.getShape(State.stashedPiece);

@@ -6,10 +6,10 @@ import { ShapeRotation } from "../renderer/ShapeRenderer";
 export type ArenaState = (number | null)[][];
 
 export interface SavedState {
-    score: number;
+    scores: number[];
     highScores: number[];
     pieceQueue: number[];
-    arenaState: ArenaState;
+    arenaStates: ArenaState[];
     currentPiece: CurrentPiece;
     stashedPiece: number | null;
     hasStashed: boolean;
@@ -23,16 +23,19 @@ export interface CurrentPiece {
 }
 
 export class State {
-    public static score = 0;
+    public static get score() { return this.scores[Settings.currentDifficulty] || 0; };
+    public static set score(value: number) { this.scores[Settings.currentDifficulty] = value; }
     public static get highScore() { return this.highScores[Settings.currentDifficulty] || 0; };
     public static set highScore(value: number) { this.highScores[Settings.currentDifficulty] = value; }
+    public static scores: number[] = [];
     public static highScores: number[] = [];
     
     public static currentPiece: number;
     public static pieceX = 0;
     public static pieceY = 0;
-    public static pieceRot = ShapeRotation.NORMAL;
+    public static pieceRot = 0;
     public static arenaState: ArenaState = [];
+    private static arenaStates: ArenaState[] = [];
 
     public static isPaused = false;
 
@@ -43,9 +46,9 @@ export class State {
     private static scoreListener: (() => void) | null = null;
 
     public static init(state: SavedState) {
-        this.score = state.score;
+        this.scores = state.scores;
         this.highScores = state.highScores;
-        this.arenaState = state.arenaState;
+        this.arenaStates = state.arenaStates;
         this.pieceQueue = state.pieceQueue;
         this.stashedPiece = state.stashedPiece;
         this.hasStashed = state.hasStashed;
@@ -54,6 +57,9 @@ export class State {
         this.pieceX = state.currentPiece.x;
         this.pieceY = state.currentPiece.y;
         this.pieceRot = state.currentPiece.rot;
+
+        var th = this.arenaStates[Settings.currentDifficulty];
+        this.arenaState = th.length == Game.arenaHeight ? th : this.emptyArena();
     }
 
     public static setScoreListener(listener: () => void) {
@@ -254,10 +260,11 @@ export class State {
     }
 
     public static export(): SavedState {
+        this.arenaStates[Settings.currentDifficulty] = this.arenaState;
         return {
-            score: this.score,
+            scores: this.scores,
             highScores: this.highScores,
-            arenaState: this.arenaState,
+            arenaStates: this.arenaStates,
             pieceQueue: this.pieceQueue,
             stashedPiece: this.stashedPiece,
             hasStashed: this.hasStashed,
