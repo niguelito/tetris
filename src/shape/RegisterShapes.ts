@@ -1,6 +1,7 @@
 import Color from "../renderer/Color";
-import { Difficulty } from "../state/Settings";
-import { ShapeRegistry, ShapeWeights } from "./Shape";
+import Difficulty from "../state/Difficulty";
+import { ShapeRegistry } from "./ShapeRegistry";
+import ShapeWeights from "./ShapeWeights";
 
 export default function registerShapes() {
     ShapeRegistry.register({

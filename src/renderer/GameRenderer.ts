@@ -1,7 +1,7 @@
-import { Game } from "../Game";
-import { Settings } from "../state/Settings";
-import { ShapeRegistry } from "../shape/Shape";
-import { State } from "../state/State";
+import Game from "../Game";
+import { ShapeRegistry } from "../shape/ShapeRegistry";
+import Settings from "../state/Settings";
+import State from "../state/State";
 import Color from "./Color";
 import GuiGraphics from "./GuiGraphics";
 import { ShapeRenderer } from "./ShapeRenderer";

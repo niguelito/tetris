@@ -1,4 +1,4 @@
-import { Game } from '../Game';
+import Game from '../Game';
 import Color from './Color';
 
 export default class GuiGraphics {

@@ -1,9 +1,10 @@
 import registerShapes from './shape/RegisterShapes.ts';
 import GuiGraphics from './renderer/GuiGraphics.ts';
 import { ShapeRenderer } from './renderer/ShapeRenderer.ts';
-import { Language, Settings } from './state/Settings.ts';
-import { ShapeRegistry } from './shape/Shape.ts';
-import { GameStorage } from "./state/Storage.ts";
+import Language from './state/Language.ts';
+import GameStorage from './state/Storage.ts';
+import Settings from './state/Settings.ts';
+import { ShapeRegistry } from './shape/ShapeRegistry.ts';
 
 (async function() {
 var state = GameStorage.loadSettings();

@@ -1,23 +1,9 @@
 import Color from "../renderer/Color";
-import { Settings } from "../state/Settings";
+import ShapeData from "./ShapeData";
 
 export type ShapeDefinition = number[][];
 
-export default interface ShapeData {
-    shape: ShapeDefinition;
-
-    weight: number;
-
-    color: Color;
-
-    minDiff: number;
-
-    name: string;
-
-    credit: string;
-}
-
-export class Shape implements ShapeData {
+export default class Shape implements ShapeData {
     public shape: ShapeDefinition;
 
     public weight: number;
@@ -75,51 +61,5 @@ export class Shape implements ShapeData {
         }
 
         return rotated;
-    }
-}
-
-export class ShapeWeights {
-    public static RARE = 1;
-    public static UNCOMMON = 2;
-    public static COMMON = 3;
-    public static VERY_COMMON = 5;
-}
-
-export class ShapeRegistry {
-    private static registered: Shape[] = [];
-    private static weighted: Shape[] = [];
-
-    public static register(shape: ShapeData) {
-        this.registered.push(new Shape(shape));
-    }
-
-    public static closeRegistry() {
-        this.registered.forEach((shape) => {
-            if (Settings.currentDifficulty < shape.minDiff) return;
-            
-            for (let i = 0; i < shape.weight; i++) {
-                this.weighted.push(shape);
-            }
-        });
-    }
-
-    public static selectShape(): number {
-        return Math.floor(Math.random() * this.weighted.length);
-    }
-
-    public static getShapes(): Shape[] {
-        return this.registered;
-    }
-
-    public static getShape(index: number): Shape {
-        return this.weighted[index];
-    }
-
-    public static width(shape: number): number {
-        return this.getShape(shape).shape[0].length;
-    }
-
-    public static height(shape: number): number {
-        return this.getShape(shape).shape.length;
     }
 }

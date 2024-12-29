@@ -1,7 +1,7 @@
 import GuiGraphics from "./GuiGraphics";
-import { Shape } from "../shape/Shape";
-import { State } from "../state/State";
+import State from "../state/State";
 import Color from "./Color";
+import Shape from "../shape/Shape";
 
 export class ShapeRotation {
     public static NORMAL = 0;

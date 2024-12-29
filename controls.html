@@ -73,17 +73,7 @@
         </div>
     </main>
 
-    <script type="module" text="ts">
-        import { Difficulty, Language, Settings } from "./src/state/Settings";
-        import { GameStorage } from "./src/state/Storage";
-
-        (async function() {
-            var state = GameStorage.loadSettings();
-            await Settings.init(state);
-
-            Language.updateTexts();
-        })();
-    </script>
+    <script type="module" src="./src/controls.ts"></script>
 </body>
 
 </html>

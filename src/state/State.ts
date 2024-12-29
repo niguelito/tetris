@@ -1,7 +1,8 @@
-import { Game } from "../Game";
-import { Settings } from "./Settings";
-import { Shape, ShapeRegistry } from "../shape/Shape";
+import Game from "../Game";
 import { ShapeRotation } from "../renderer/ShapeRenderer";
+import Shape from "../shape/Shape";
+import { ShapeRegistry } from "../shape/ShapeRegistry";
+import Settings from "./Settings";
 
 export type ArenaState = (number | null)[][];
 
@@ -22,7 +23,7 @@ export interface CurrentPiece {
     rot: number;
 }
 
-export class State {
+export default class State {
     public static get score() { return this.scores[Settings.currentDifficulty] || 0; };
     public static set score(value: number) { this.scores[Settings.currentDifficulty] = value; }
     public static get highScore() { return this.highScores[Settings.currentDifficulty] || 0; };

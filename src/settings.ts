@@ -1,5 +1,7 @@
-import { Difficulty, Language, Settings } from "./state/Settings";
-import { GameStorage } from "./state/Storage";
+import Difficulty from "./state/Difficulty";
+import Language from "./state/Language";
+import Settings from "./state/Settings";
+import GameStorage from "./state/Storage";
 
 (async function() {
 

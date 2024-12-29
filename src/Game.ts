@@ -1,11 +1,11 @@
-import { Settings } from "./state/Settings.ts";
-import { ShapeRegistry } from "./shape/Shape.ts";
-import { State } from "./state/State.ts";
-import { GameStorage } from "./state/Storage.ts";
 import GameRenderer from "./renderer/GameRenderer.ts";
 import GuiGraphics from "./renderer/GuiGraphics.ts";
+import { ShapeRegistry } from "./shape/ShapeRegistry.ts";
+import Settings from "./state/Settings.ts";
+import State from "./state/State.ts";
+import GameStorage from "./state/Storage.ts";
 
-export class Game {
+export default class Game {
     public static get arenaWidth() { return Settings.weightedDifficulty(10, 10, 12, 15, 15) };
     public static get arenaHeight() { return Settings.weightedDifficulty(18, 18, 22, 27, 27) };
     public static get deathHeight() { return Settings.weightedDifficulty(15, 15, 20, 24, 24) };

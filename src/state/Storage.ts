@@ -1,11 +1,12 @@
 import { instanceToPlain } from "class-transformer";
-import { Difficulty, SavedSettings } from "./Settings";
 import { SavedState } from "./State";
 import crypto from 'crypto-js';
-import { ShapeRegistry } from "../shape/Shape";
 import { ShapeRotation } from "../renderer/ShapeRenderer";
+import { SavedSettings } from "./Settings";
+import { ShapeRegistry } from "../shape/ShapeRegistry";
+import Difficulty from "./Difficulty";
 
-export class GameStorage {
+export default class GameStorage {
     public static SECRET_KEY = "bmlndWVsaXRvIGlzIGJhZCBhdCBjYWxjdWx1cw==";
     public static dataKey = "data6ff3f944";
     public static settingsKey = "settings6ff3f944";

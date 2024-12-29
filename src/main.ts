@@ -1,12 +1,13 @@
-import { Game } from "./Game";
 import KeyboardHandler from "./KeyboardHandler";
 import registerShapes from "./shape/RegisterShapes";
-import { Language, Settings } from "./state/Settings";
-import { ShapeRegistry } from "./shape/Shape";
-import { State } from "./state/State";
-import { GameStorage } from "./state/Storage";
 import GuiGraphics from "./renderer/GuiGraphics";
 import { ShapeRenderer } from "./renderer/ShapeRenderer";
+import { ShapeRegistry } from "./shape/ShapeRegistry";
+import GameStorage from "./state/Storage";
+import Settings from "./state/Settings";
+import State from "./state/State";
+import Game from "./Game";
+import Language from "./state/Language";
 
 (async function() {
     var canvas = document.getElementById('canvas');
