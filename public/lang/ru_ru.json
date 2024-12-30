@@ -17,6 +17,14 @@
     "rarity.3": "Обычно",
     "rarity.5": "Очень обычно",
 
+    "background.bridge": "Мост",
+    "background.galaxy": "Галактика",
+    "background.lake": "Озеро",
+    "background.leaves": "Листья",
+    "background.mountains": "Горы",
+    "background.tetris": "Тетрис",
+    "background.none": "Нет",
+
     "controls": "Управление",
     "controls.rotate": "Поворот",
     "controls.leftright": "Влево/Вправо",

@@ -7,4 +7,5 @@ import GameStorage from "./state/Storage";
     await Settings.init(state);
 
     Language.updateTexts();
+    Settings.loadBackground()
 })();

@@ -11,7 +11,7 @@ var state = GameStorage.loadSettings();
 await Settings.init(state);
 
 Language.updateTexts();
-
+Settings.loadBackground();
 registerShapes();
 
 var e = document.getElementById("blocks");

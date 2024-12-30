@@ -17,6 +17,14 @@
     "rarity.3": "Common",
     "rarity.5": "Very Common",
 
+    "background.bridge": "Bridge",
+    "background.galaxy": "Galaxy",
+    "background.lake": "Lake",
+    "background.leaves": "Leaves",
+    "background.mountains": "Mountains",
+    "background.tetris": "Tetris",
+    "background.none": "None",
+
     "controls": "Controls",
     "controls.rotate": "Rotate",
     "controls.leftright": "Left/Right",
@@ -29,6 +37,7 @@
     "settings.language": "Language",
     "settings.difficulty": "Difficulty",
     "settings.collisionPath": "Collision Path",
+    "settings.background": "Background",
     "settings.reset": "Reset Settings",
     "settings.download": "Download",
     "settings.download.save": "Save",

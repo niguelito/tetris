@@ -17,6 +17,14 @@
     "rarity.3": "Común",
     "rarity.5": "Muy común",
 
+    "background.bridge": "Puente",
+    "background.galaxy": "Galaxia",
+    "background.lake": "Lago",
+    "background.leaves": "Hojas",
+    "background.mountains": "Montañas",
+    "background.tetris": "Tetris",
+    "background.none": "Ninguno",
+
     "controls": "Controles",
     "controls.rotate": "Rotar",
     "controls.leftright": "Izquierda/Derecha",

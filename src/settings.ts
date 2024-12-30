@@ -8,6 +8,8 @@ import GameStorage from "./state/Storage";
 var state = GameStorage.loadSettings();
 await Settings.init(state);
 
+Settings.loadBackground();
+
 Language.updateTexts();
 
 {
@@ -53,6 +55,14 @@ collision.onchange = (e) => {
     Settings.showCollisionPath = (e.target as HTMLSelectElement).value == 'true';
     GameStorage.save(Settings.export());
     console.log(Settings.export());
+};
+
+var background = document.getElementById("background") as HTMLSelectElement;
+background.value = Settings.backgroundImage;
+background.onchange = (e) => {
+    Settings.backgroundImage = (e.target as HTMLSelectElement).value;
+    GameStorage.save(Settings.export());
+    Settings.loadBackground();
 };
 
 document.getElementById("reset")?.addEventListener('click', () => {

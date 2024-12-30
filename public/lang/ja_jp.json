@@ -17,6 +17,14 @@
     "rarity.3": "コモン",
     "rarity.5": "非常に一般的",
 
+    "background.bridge": "橋",
+    "background.galaxy": "銀河",
+    "background.lake": "湖",
+    "background.leaves": "葉",
+    "background.mountains": "山",
+    "background.tetris": "テトリス",
+    "background.none": "なし",
+
     "controls": "コントロール",
     "controls.rotate": "回転",
     "controls.leftright": "左/右",

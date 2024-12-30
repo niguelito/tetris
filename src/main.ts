@@ -16,6 +16,7 @@ import Language from "./state/Language";
     var settings = GameStorage.loadSettings();
     await Settings.init(settings);
     State.init(state);
+    Settings.loadBackground();
 
     registerShapes();
 

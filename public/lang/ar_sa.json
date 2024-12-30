@@ -17,6 +17,14 @@
     "rarity.3": "شائع",
     "rarity.5": "شائع جدًا",
 
+    "background.bridge": "جسر",
+    "background.galaxy": "مجرة",
+    "background.lake": "بحيرة",
+    "background.leaves": "أوراق",
+    "background.mountains": "جبال",
+    "background.tetris": "تتريس",
+    "background.none": "لا شيء",
+
     "controls": "التحكم",
     "controls.rotate": "تدوير",
     "controls.leftright": "يسار/يمين",

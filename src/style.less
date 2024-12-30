@@ -5,12 +5,10 @@
     width: 100vw;
 }
 
-$canvas-height: 100vh;
-$canvas-width: calc($canvas-height * (675 / 1215));
+@canvas-height: 100vh;
+@canvas-width: calc(@canvas-height * (675 / 1215));
 
-html,
 body {
-    background-color: #222;
     margin: 0;
     padding: 0;
 
@@ -23,40 +21,70 @@ body {
 
     overflow: hidden;
 
-    canvas,
-    main {
-        width: $canvas-width;
-        overflow: hidden;
-        height: $canvas-height;
+    &::before {
+        filter: brightness(0.5);
+
+        background-color: #222;
+        background-image: var(--background-image, none);
+        background-size: cover;
+        background-position: center;
+
+        width: 100%;
+        height: 100%;
+
+        position: fixed;
+        top: 0;
+        left: 0;
+
+        content: '';
     }
 
-    $size: 10vw;
+    canvas,
+    main {
+        width: @canvas-width;
+        overflow: hidden;
+        height: @canvas-height;
+    }
+
+    main {
+        @border: 3px solid rgba(255, 255, 255, 0.1);
+
+        position: relative;
+    
+        background-color: rgba(0, 0, 0, 0.523);
+        border-right: @border;
+        border-left: @border;
+    
+        user-select: none;
+    }
+
+    @size: 10vw;
 
     #pieceQueue {
         padding: 20px;
-        width: $size;
+        width: @size;
         position: relative;
         display: flex;
         flex-direction: column;
         gap: 5%;
 
         canvas {
-            width: $size;
-            height: $size;
+            width: @size;
+            height: @size;
         }
     }
 
     #stash {
         padding: 20px;
-        width: $size;
+        width: @size;
         position: relative;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
 
         canvas {
-            width: $size;
-            height: $size;
+            width: @size;
+            height: @size;
         }
 
         #scoreInfo {
@@ -71,17 +99,17 @@ body {
 
     #buttons {
         z-index: 1;
-        $square: 30px;
+        @square: 30px;
         width: 100vw;
         position: fixed;
     
         & > button {
-            $padding: 6px;
-            $padding-active: 5px;
-            $margin: $square * 1.5;
+            @padding: 6px;
+            @padding-active: 5px;
+            @margin: @square * 1.5;
     
             position: absolute;
-            top: $margin;
+            top: @margin;
             margin: 0;
             padding: 0;
             border: none;
@@ -90,41 +118,41 @@ body {
             background-color: transparent;
     
             border-radius: 4px;
-            padding: $padding;
+            padding: @padding;
             outline: none;
     
             transition: all 0.04s ease;
             transform: translate(-50%, -50%);
     
-            max-width: $square + $padding * 2;
-            max-height: $square + $padding * 2;
+            max-width: @square + @padding * 2;
+            max-height: @square + @padding * 2;
     
             img {
                 position: relative;
-                width: $square;
-                height: $square;
+                width: @square;
+                height: @square;
             }
     
             &#restart {
-                left: $margin;
+                left: @margin;
             }
     
             &#pauseplay {
-                right: $margin;
+                right: @margin;
                 transform: translate(50%, -50%);
             }
     
             &#controls {
-                left: $margin * 2;
+                left: @margin * 2;
             }
     
             &#settings {
-                right: $margin * 2;
+                right: @margin * 2;
                 transform: translate(50%, -50%);
             }
     
             &#blocks {
-                left: $margin * 3;
+                left: @margin * 3;
             }
     
             &#back {
@@ -135,7 +163,7 @@ body {
             }
     
             &#download {
-                right: $margin * 3;
+                right: @margin * 3;
                 transform: translate(50%, -50%);
             }
     
@@ -144,7 +172,7 @@ body {
             }
     
             &:active {
-                padding: $padding-active;
+                padding: @padding-active;
             }
         }
     
@@ -176,15 +204,4 @@ body {
 
 *[hidden] {
     display: none !important;
-}
-
-main {
-    $canvas-margin: 3px;
-    
-    position: relative;
-    margin: $canvas-margin;
-
-    background-color: black;
-
-    user-select: none;
 }

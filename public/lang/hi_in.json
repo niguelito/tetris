@@ -17,6 +17,14 @@
     "rarity.3": "सामान्य",
     "rarity.5": "बहुत सामान्य",
 
+    "background.bridge": "पुल",
+    "background.galaxy": "गैलेक्सी",
+    "background.lake": "झील",
+    "background.leaves": "पत्ते",
+    "background.mountains": "पहाड़",
+    "background.tetris": "टेट्रिस",
+    "background.none": "कोई नहीं",
+
     "controls": "नियंत्रण",
     "controls.rotate": "घुमाएँ",
     "controls.leftright": "बाएँ/दाएँ",

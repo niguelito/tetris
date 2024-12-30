@@ -6,7 +6,7 @@
     <link rel="icon" type="image/png" href="./icon.png" />
     <title>Tetris Settings</title>
 
-    <link rel="stylesheet" href="./src/settings.scss">
+    <link rel="stylesheet" href="./src/settings.less">
 </head>
 <body>
     <div id="buttons">
@@ -15,35 +15,48 @@
     
     <main>
         <div id="settings">
-            <h1><text>settings</text></h1>
+            <h1 translate>settings</h1>
 
 
-            <p><text>settings.language</text></p>
+            <p translate>settings.language</p>
             <select id="language"></select>
 
             <br>
 
-            <p id="diff"><text>settings.difficulty</text></p>
+            <p id="diff" translate>settings.difficulty</p>
             <select id="difficulty"></select>
 
             <br>
 
-            <p><text>settings.collisionPath</text></p>
+            <p translate>settings.collisionPath</p>
             <select id="collisionPath">
                 <option value="true" translate>yes</option>
                 <option value="false" translate>no</option>
             </select>
 
-            <button id="reset"><text>settings.reset</text></button>
+            <br>
+
+            <p translate>settings.background</p>
+            <select id="background">
+                <option value="none" translate>background.none</option>
+                <option value="bridge" translate>background.bridge</option>
+                <option value="galaxy" translate>background.galaxy</option>
+                <option value="lake" translate>background.lake</option>
+                <option value="leaves" translate>background.leaves</option>
+                <option value="mountains" translate>background.mountains</option>
+                <option value="tetris" translate>background.tetris</option>
+            </select>
+
+            <button id="reset" translate>settings.reset</button>
 
             <br>
 
-            <p><text>settings.download</text></p>
+            <p translate>settings.download</p>
             <div>
-                <button id="download"><text>settings.download.save</text></button>
-                <button id="load"><label for="import"><text>settings.download.load</text></label></button>
+                <button id="download" translate>settings.download.save</button>
+                <button id="load"><label for="import" translate>settings.download.load</label></button>
                 <input type="file" id="import" style="display: none;">
-                <button id="resetG"><text>settings.download.reset</text></button>
+                <button id="resetG" translate>settings.download.reset</button>
             </div>
         </div>
     </main>
