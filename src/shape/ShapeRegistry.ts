@@ -39,4 +39,8 @@ export class ShapeRegistry {
     public static height(shape: number): number {
         return this.getShape(shape).shape.length;
     }
+
+    public static exists(shape: number): boolean {
+        return shape >= 0 && shape < this.weighted.length;
+    }
 }
