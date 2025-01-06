@@ -41,6 +41,6 @@ export class ShapeRegistry {
     }
 
     public static exists(shape: number): boolean {
-        return shape >= 0 && shape < this.weighted.length;
+        return this.weighted[shape] != undefined;
     }
 }
