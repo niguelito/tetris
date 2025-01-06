@@ -22,7 +22,7 @@ export default class GameStorage {
             arenaStates: [[], [], [], [], []],
             pieceQueue: [],
             hasStashed: false,
-            stashedPiece: null,
+            stashedPieces: [null, null, null, null, null],
             currentPiece: {
                 piece: ShapeRegistry.selectShape(),
                 x: 0,
@@ -67,7 +67,7 @@ export default class GameStorage {
                 highScores: a.highScores ? a.highScores : [0, 0, 0, 0, 0],
                 arenaStates: a.arenaStates ? a.arenaStates : [[], [], [], [], []],
                 pieceQueue: a.pieceQueue ? a.pieceQueue : [],
-                stashedPiece: a.stashedPiece ? a.stashedPiece : null,
+                stashedPieces: a.stashedPieces ? a.stashedPieces : [null, null, null, null, null],
                 hasStashed: a.hasStashed != undefined ? a.hasStashed : false,
                 currentPiece: {
                     piece: this.resolveOrZero(a.currentPiece.piece),

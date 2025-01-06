@@ -12,7 +12,7 @@ export interface SavedState {
     pieceQueue: number[];
     arenaStates: ArenaState[];
     currentPiece: CurrentPiece;
-    stashedPiece: number | null;
+    stashedPieces: (number | null)[];
     hasStashed: boolean;
 }
 
@@ -41,7 +41,9 @@ export default class State {
     public static isPaused = false;
 
     public static pieceQueue: number[] = [];
-    public static stashedPiece: number | null = null;
+    public static get stashedPiece() { return this.stashedPieces[Settings.currentDifficulty] };
+    public static set stashedPiece(value: number | null) { this.stashedPieces[Settings.currentDifficulty] = value }
+    public static stashedPieces: (number | null)[] = [];
     public static hasStashed = false;
 
     private static scoreListener: (() => void) | null = null;
@@ -51,7 +53,7 @@ export default class State {
         this.highScores = state.highScores;
         this.arenaStates = state.arenaStates;
         this.pieceQueue = state.pieceQueue;
-        this.stashedPiece = state.stashedPiece;
+        this.stashedPieces = state.stashedPieces;
         this.hasStashed = state.hasStashed;
         
         this.currentPiece = state.currentPiece.piece;
@@ -267,7 +269,7 @@ export default class State {
             highScores: this.highScores,
             arenaStates: this.arenaStates,
             pieceQueue: this.pieceQueue,
-            stashedPiece: this.stashedPiece,
+            stashedPieces: this.stashedPieces,
             hasStashed: this.hasStashed,
             currentPiece: {
                 piece: this.currentPiece,
