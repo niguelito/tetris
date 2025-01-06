@@ -65,7 +65,7 @@ export default class Game {
             return;
         }
 
-        if (State.currentPiece != undefined || ShapeRegistry.exists(State.currentPiece)) {
+        if (State.currentPiece != undefined) {
             if (State.collides()) {
                 if (Game.placeDelta) {
                     State.putShape(ShapeRegistry.getShape(State.currentPiece), State.pieceX, State.pieceY, State.pieceRot);

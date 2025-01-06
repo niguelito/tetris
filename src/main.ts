@@ -24,6 +24,12 @@ import Language from "./state/Language";
 
     KeyboardHandler.init();
 
+    if (!ShapeRegistry.exists(State.currentPiece)) State.currentPiece = ShapeRegistry.selectShape();
+
+    for (let i = 0; i < State.pieceQueue.length; i++) {
+        if (!ShapeRegistry.exists(State.pieceQueue[i])) State.pieceQueue[i] = ShapeRegistry.selectShape();
+    }
+
     window.requestAnimationFrame((d) => {
         Game.render(d, canvas as HTMLCanvasElement);
 
