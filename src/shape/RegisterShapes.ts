@@ -455,4 +455,21 @@ export default function registerShapes() {
         color: Color.hex(0xf7d65c),
         minDiff: Difficulty.HARD
     });
+
+    ShapeRegistry.register({
+        name: "A Friend",
+        credit: "Miguel",
+        shape: [
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 1, 0, 0, 0, 1, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [1, 0, 0, 0, 0, 0, 1],
+            [0, 0, 0, 1, 0, 0, 0]
+        ],
+        weight: ShapeWeights.UNCOMMON,
+        color: Color.hex(0xffffff),
+        minDiff: Difficulty.IMPOSSIBLE
+    });
 }
