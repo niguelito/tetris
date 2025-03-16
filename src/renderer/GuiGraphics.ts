@@ -67,4 +67,14 @@ export default class GuiGraphics {
         this.context.closePath();
         this.context.stroke();
     }
+
+    public drawTexture(texture: HTMLImageElement, x: number, y: number, width: number, height: number, opacity = 1, sized = true) {
+        var rx = sized? this.resizePix(x) : x;
+        var ry = sized? this.resizePix(y) : y;
+        var rw = sized? this.resizePix(width) : width;
+        var rh = sized? this.resizePix(height) : height;
+        this.context.globalAlpha = opacity;
+        this.context.drawImage(texture, rx, ry, rw, rh);
+        this.context.globalAlpha = 1;
+    }
 }

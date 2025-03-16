@@ -11,7 +11,9 @@ export class ShapeRotation {
 }
 
 export class ShapeRenderer {
-    public static renderShape(graphics: GuiGraphics, shape: Shape, x: number, y: number, rotation = ShapeRotation.NORMAL, color = shape.color) {
+    static colorPower = 0.7;
+
+    public static renderShape(graphics: GuiGraphics, shape: Shape, texture: HTMLImageElement | null, x: number, y: number, rotation = ShapeRotation.NORMAL, color = shape.color) {
         var shapeDefinition;
         switch (rotation) {
             default: shapeDefinition = shape.shape; break; 
@@ -26,8 +28,16 @@ export class ShapeRenderer {
                     var cellValue = shapeDefinition[row][col];
 
                     if (cellValue != 0) {
+                        if (texture) graphics.drawTexture(
+                            texture,
+                            (x + col),
+                            (y + row),
+                            1,
+                            1,
+                            color.alpha
+                        )
                         graphics.drawRect(
-                            color,
+                            texture ? color.translucent(this.colorPower) : color,
                             (x + col),
                             (y + row),
                             1,
@@ -39,14 +49,23 @@ export class ShapeRenderer {
         }
     }
 
-    static renderArena(graphics: GuiGraphics) {
+    static renderArena(graphics: GuiGraphics, texture: HTMLImageElement | null) {
         State.arenaState.forEach((row, y) => {
             row.forEach((cell, x) => {
                 if (cell != null) {
+                    const color = Color.hex(cell);
+
+                    if (texture) graphics.drawTexture(
+                        texture,
+                        (x),
+                        (y),
+                        1,
+                        1
+                    )
                     graphics.drawRect(
-                        Color.hex(cell),
-                        x,
-                        y,
+                        texture ? color.translucent(this.colorPower) : color,
+                        (x),
+                        (y),
                         1,
                         1
                     );

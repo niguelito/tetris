@@ -7,8 +7,8 @@ import GuiGraphics from "./GuiGraphics";
 import { ShapeRenderer } from "./ShapeRenderer";
 
 export default class GameRenderer {
-    public static render(graphics: GuiGraphics) {
-        ShapeRenderer.renderArena(graphics);
+    public static render(graphics: GuiGraphics, texture: HTMLImageElement | null) {
+        ShapeRenderer.renderArena(graphics, texture);
 
         if (State.currentPiece != undefined && !State.gameOver()) {
             var shape = ShapeRegistry.getShape(State.currentPiece);
@@ -19,11 +19,11 @@ export default class GameRenderer {
             if (Settings.showCollisionPath) {
                 let dy = 0;
                 while (!State.collides(dy)) dy++;
-                ShapeRenderer.renderShape(graphics, shape, x, y + dy, rot, Color.hex(0x474747));
+                ShapeRenderer.renderShape(graphics, shape, texture, x, y + dy, rot, Color.hex(0x474747));
             }
 
-            if (!State.collides()) ShapeRenderer.renderShape(graphics, shape, x, y, rot);
-            else ShapeRenderer.renderShape(graphics, shape, x, y, rot, shape.color.brighter(-50));
+            if (!State.collides()) ShapeRenderer.renderShape(graphics, shape, texture, x, y, rot);
+            else ShapeRenderer.renderShape(graphics, shape, texture, x, y, rot, shape.color.brighter(-50));
         }
 
         this.renderDeathLine(graphics);

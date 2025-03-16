@@ -37,7 +37,8 @@ export default class GameStorage {
             lang: "en",
             difficulty: Difficulty.NORMAL,
             showCollisionPath: true,
-            backgroundImage: 'tetris'
+            backgroundImage: 'tetris',
+            texture: "gem"
         };
     }
 
@@ -94,7 +95,8 @@ export default class GameStorage {
                 lang: a.lang ? a.lang : "en",
                 difficulty: a.difficulty ? a.difficulty : Difficulty.NORMAL,
                 showCollisionPath: a.showCollisionPath != undefined ? a.showCollisionPath : true,
-                backgroundImage: a.backgroundImage ? a.backgroundImage : 'tetris'
+                backgroundImage: a.backgroundImage ? a.backgroundImage : 'tetris',
+                texture: a.texture ? a.texture : 'gem'
             };
         } catch (err) {
             console.error(err);

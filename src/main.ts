@@ -9,6 +9,15 @@ import State from "./state/State";
 import Game from "./Game";
 import Language from "./state/Language";
 
+async function loadImage(src: string): Promise<HTMLImageElement> {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.src = src;
+        img.onload = () => resolve(img);
+        img.onerror = (err) => reject(err);
+    });
+}
+
 (async function() {
     var canvas = document.getElementById('canvas');
 
@@ -17,6 +26,8 @@ import Language from "./state/Language";
     await Settings.init(settings);
     State.init(state);
     Settings.loadBackground();
+
+    const texture = settings.texture != "none" ? await loadImage("./assets/textures/" + settings.texture + ".png") : null;
 
     registerShapes();
 
@@ -31,7 +42,7 @@ import Language from "./state/Language";
     }
 
     window.requestAnimationFrame((d) => {
-        Game.render(d, canvas as HTMLCanvasElement);
+        Game.render(d, canvas as HTMLCanvasElement, texture);
 
         function renderQueueShape(c: HTMLCanvasElement, delta: number) {
             try {
@@ -44,7 +55,7 @@ import Language from "./state/Language";
                 var scale = c.width / shape.shape.length;
                 graphics.pushScale(Math.min(scale - scale % 2, 45));
         
-                ShapeRenderer.renderShape(graphics, shape, 0, 0);
+                ShapeRenderer.renderShape(graphics, shape, texture, 0, 0);
             } catch (e) {}
     
             window.requestAnimationFrame((d) => renderQueueShape(c, d));
@@ -70,7 +81,7 @@ import Language from "./state/Language";
                 var scale = c.width / shape.shape.length;
                 graphics.pushScale(Math.min(scale - scale % 2, 45));
         
-                ShapeRenderer.renderShape(graphics, shape, 0, 0);
+                ShapeRenderer.renderShape(graphics, shape, texture, 0, 0);
             } catch (e) {}
         }
 

@@ -25,6 +25,11 @@
     "background.tetris": "Tetris",
     "background.none": "Keiner",
 
+    "texture.none": "None",
+    "texture.gem": "Gem",
+    "texture.lego": "Lego",
+    "texture.x": "X",
+
     "controls": "Steuerung",
     "controls.rotate": "Drehen",
     "controls.leftright": "Links/Rechts",

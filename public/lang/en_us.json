@@ -25,6 +25,11 @@
     "background.tetris": "Tetris",
     "background.none": "None",
 
+    "texture.none": "None",
+    "texture.gem": "Gem",
+    "texture.lego": "Lego",
+    "texture.x": "X",
+
     "controls": "Controls",
     "controls.rotate": "Rotate",
     "controls.leftright": "Left/Right",
@@ -38,6 +43,7 @@
     "settings.difficulty": "Difficulty",
     "settings.collisionPath": "Collision Path",
     "settings.background": "Background",
+    "settings.texture": "Block Texture",
     "settings.reset": "Reset Settings",
     "settings.download": "Download",
     "settings.download.save": "Save",

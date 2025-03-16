@@ -7,12 +7,14 @@ export interface SavedSettings {
     difficulty: number;
     showCollisionPath: boolean;
     backgroundImage: string;
+    texture: string;
 }
 
 export default class Settings {
     static currentDifficulty = Difficulty.NORMAL;
     static showCollisionPath = true;
     static backgroundImage = 'tetris';
+    static texture = "gem"
 
     public static async init(settings: SavedSettings) {
         console.log(settings.showCollisionPath)
@@ -31,7 +33,8 @@ export default class Settings {
             lang: Language.selectedTranslation.data.localization,
             difficulty: this.currentDifficulty + 1,
             showCollisionPath: this.showCollisionPath,
-            backgroundImage: this.backgroundImage
+            backgroundImage: this.backgroundImage,
+            texture: this.texture
         }
     }
 

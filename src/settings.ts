@@ -65,6 +65,14 @@ background.onchange = (e) => {
     Settings.loadBackground();
 };
 
+var texture = document.getElementById("texture") as HTMLSelectElement;
+texture.value = Settings.texture;
+texture.onchange = (e) => {
+    Settings.texture = (e.target as HTMLSelectElement).value;
+    GameStorage.save(Settings.export());
+    Settings.loadBackground();
+};
+
 document.getElementById("reset")?.addEventListener('click', () => {
     GameStorage.save(GameStorage.createNewSettings());
     window.location.reload();

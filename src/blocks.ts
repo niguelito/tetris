@@ -6,6 +6,15 @@ import GameStorage from './state/Storage.ts';
 import Settings from './state/Settings.ts';
 import { ShapeRegistry } from './shape/ShapeRegistry.ts';
 
+async function loadImage(src: string): Promise<HTMLImageElement> {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.src = src;
+        img.onload = () => resolve(img);
+        img.onerror = (err) => reject(err);
+    });
+}
+
 (async function() {
 var state = GameStorage.loadSettings();
 await Settings.init(state);
@@ -13,6 +22,8 @@ await Settings.init(state);
 Language.updateTexts();
 Settings.loadBackground();
 registerShapes();
+
+const texture = state.texture != "none" ? await loadImage("./assets/textures/" + state.texture + ".png") : null;
 
 var e = document.getElementById("blocks");
 ShapeRegistry.getShapes().forEach((shape) => {
@@ -39,7 +50,7 @@ ShapeRegistry.getShapes().forEach((shape) => {
         var scale = canvas.width / shape.shape.length;
         graphics.pushScale(Math.min(scale - scale % 2, 45));
 
-        ShapeRenderer.renderShape(graphics, shape, 0, 0);
+        ShapeRenderer.renderShape(graphics, shape, texture, 0, 0);
     });
 
 });

@@ -35,14 +35,14 @@ export default class Game {
     public static rotateDelta: boolean = false;
     public static dropDelta: boolean = false;
 
-    public static async render(delta: number, canvas: HTMLCanvasElement) {
+    public static async render(delta: number, canvas: HTMLCanvasElement, texture: HTMLImageElement | null) {
         var ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
         var graphics = new GuiGraphics(ctx, delta);
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        GameRenderer.render(graphics);
+        GameRenderer.render(graphics, texture);
 
-        window.requestAnimationFrame((d) => Game.render(d, canvas));
+        window.requestAnimationFrame((d) => Game.render(d, canvas, texture));
     }
 
     public static tick(a = false) {
